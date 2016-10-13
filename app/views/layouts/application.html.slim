@@ -1,0 +1,78 @@
+doctype html
+html
+  head
+    title
+      | Tracksu
+    = csrf_meta_tags
+    = action_cable_meta_tag
+    = stylesheet_link_tag 'frontend', media: 'all', 'data-turbolinks-track' => 'reload'
+    = javascript_include_tag 'frontend/all', 'data-turbolinks-track' => 'reload'
+  body[class="#{@main_class}" ]
+    nav.navbar.navbar-default.full-width role="navigation"
+      .white-bg
+        .container
+          .navbar-header
+            button.navbar-toggle data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button"
+              span.sr-only Toggle navigation
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+            = link_to root_path, class: "navbar-brand"
+              = image_tag 'frontend/tracksu-logo.png'
+          #bs-example-navbar-collapse-1.collapse.navbar-collapse
+            .right.hidden-xs.hidden-sm
+              //= link_to new_user_registration_path, class: "btn btn-primary"
+                | Sign Up
+              - if user_signed_in?
+                = link_to tracksu_companies_path, class: "spaced login"
+                  | Tracksu
+              - else
+                = link_to new_user_session_path, class: "spaced login"
+                  | Log In
+              /a.btn.btn-primary href="{{ url('auth/register') }}"  Sign Up
+              /a.spaced.login href=("{{ url('auth/login') }}")  Log In
+            ul.nav.navbar-nav
+              li
+                = link_to root_path
+                  | Home
+                /a href=("{{ url('') }}")  Home
+              li
+                = link_to home_tour_path
+                  | Tour
+                /a href=("{{ url('tour') }}")  Tour
+              li
+                = link_to home_pricing_path
+                  | Pricing
+              li
+                = link_to home_about_path
+                  | About
+
+    = yield
+    footer#footer.full-width.padding
+      .container
+        .row
+          .col-xs-6.col-sm-3.copyright.pull-right
+            .social-nav
+              ul
+                li
+                  = link_to "#", target: "_blank"
+                    = image_tag "frontend/fb.png"
+                li
+                  = link_to "#", target: "_blank"
+                    = image_tag "frontend/tweet.png"
+            | &copy;
+            | tracksu
+          .col-sm-6.footer-nav
+            ul
+              li
+                = link_to root_path
+                  | Home
+              li
+                = link_to home_tour_path
+                  | Tour
+              li
+                = link_to home_pricing_path
+                  | Pricing
+              li
+                = link_to home_about_path
+                  | About

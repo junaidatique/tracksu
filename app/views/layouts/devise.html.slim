@@ -1,0 +1,11 @@
+doctype html
+html
+  head
+    title
+      | Tracksu
+    = csrf_meta_tags
+    = action_cable_meta_tag
+    = stylesheet_link_tag 'style', media: 'all', 'data-turbolinks-track' => 'reload'
+    = javascript_include_tag 'quirk', 'data-turbolinks-track' => 'reload'
+  body[class="signwrapper"]
+    = yield

@@ -1,0 +1,100 @@
+section#how-it-works.full-width.effect
+  .container
+    .row
+      h1.line How tracksu Works.
+    /! /row
+    .row.padding.first-steps
+      .col-sm-4.one
+        .col-sm-2
+          h1.blue 1
+        .col-sm-10
+          h3 Capture
+          p.small After installing the "Moves App", every movement is automatically captured. Each location with time spent is then displayed in a beautiful timeline.
+          = image_tag "frontend/step1-a2e30434.jpg", class: "img-responsive hidden-xs"
+      .col-sm-4.two
+        .col-sm-2
+          h1.blue 2
+        .col-sm-10
+          h3 Adding Names
+          p.small Each Visit can also be identified with the customer name. All future visits to the same location would automatically tagged with the same customer name.
+          = image_tag "frontend/step2-41c34e99.jpg", class: "img-responsive hidden-xs"
+
+      .col-sm-4.three
+        .col-sm-2
+          h1.blue 3
+        .col-sm-10
+          h3 Report Ready
+          p.small A complete Visit report is now ready with Customer Name, location & time of visit. It is now ready to be sent to Tracksu Manager dashboard.
+          = image_tag "frontend/step3-8519c533_2.jpg", class: "img-responsive hidden-xs"
+    .row.padding.last-steps
+      .col-sm-4
+        .row.four
+          .col-sm-2
+            h1.blue 4
+          .col-sm-10
+            h3 Additional Information addition
+            p.small You can add additional information on the visit in the comment section. For this, each Sales person would have to log into their Tracksu profile.
+        .row.padding.five
+          .col-sm-2
+            h1.blue 5
+          .col-sm-10
+            h3 Manager Gets Daily Report
+            p.small With the report ready, Sales Manager can see it in their Tracksu Dashboard
+      .col-sm-8.computer
+        = image_tag "frontend/step4-5-af7225e6.jpg", class: "img-responsive hidden-xs max"
+    .row.padding.centered style=("margin-bottom:0; margin-top:30px;")
+      h2 style=("font-style: italic; font-size:1.5em;")  Ready to save your business time and money?
+      .col-xs-11.hr
+        = link_to new_user_registration_path, class: "btn btn-primary"
+          | Start a Free Trial Now →
+section#reports.full-width.padding.effect
+  .col-sm-7.col-lg-6.img
+    = image_tag "frontend/reports_img-7c13356d.png", class: "img-responsive"
+  .container
+    .row
+      .col-sm-5.col-sm-offset-6.col-md-offset-7.content
+        h1.line Reports created automagically.
+        p Tracksu generates Monthly & weekly for each Sales person so that you stay on top of what is happening on daily basis. You can see the number of visits per day and how often do your Sales person visit certain clients. Also, you get a good feel of their pipeline by estimating visits to new prospects and their responses
+
+section#accounting.full-width.padding
+  .container
+    .row
+      .col-sm-6.content
+        h1.line Make your Sales force cry tears of joy .....
+        p
+          | No one loves making daily visit reports.
+          span.break.hidden-xs.hidden-sm
+          | Your time is valuable and Tracksu is here to make your life easier.
+      .col-sm-5.col-md-offset-1.list
+        .row
+          .col-sm-2
+            = image_tag "frontend/setting.png"
+          .col-sm-10
+            h2
+              | Pain Free
+              span.block Set-up
+            p.small Set it up in less than 15 minutes. Just ask your Sales force to add "Moves App" in their cell phones and give data access permission to Tracksu
+        .row
+          .col-sm-2
+            = image_tag "frontend/power.png"
+          .col-sm-10
+            h2 Daily Visit tracking
+            p.small Daily visit report from every sales person would be uploaded by the end of the day into your Dashboard. You will up to date on all the activities and don't have to go through tons of excel sheets or paper reports
+        .row
+          .col-sm-2
+            = image_tag "frontend/scroll.png"
+          .col-sm-10
+            h2 Powerful Reporting
+            p.small With all the data readily available in meaningful reports, you stay on top of your game and can now make better decisions on forecasting, target setting and area allocation.
+section#ready.full-width.padding
+  .container
+    .row
+      .col-lg-9.centered.content
+        h1 Ready to make better decisions with updated daily visit reports & sales force Tracking ?
+        h3.col-sm-8.centered Discover the experience of automated reported by Tracksu
+        = link_to new_user_registration_path, class: "btn btn-primary"
+          | Start a Free Trail Now
+        h5
+          = link_to home_pricing_path
+            | See Pricing Details
+

@@ -1,0 +1,18 @@
+.sign-overlay
+.signpanel
+.panel.signin
+  .panel-heading
+    h1
+    h4.panel-title
+      | Forgot your password?
+  .panel-body
+    = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+      - unless resource.errors.blank?
+        .alert.alert-danger
+          = devise_error_messages!
+      .form-group.mb10
+        = f.label :email
+        = f.email_field :email, autofocus: true, class: "form-control", required: :required
+      .form-group
+        = f.submit "Send me reset password instructions", class: "btn btn-success btn-quirk btn-block"
+      = render "devise/shared/links"

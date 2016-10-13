@@ -1,0 +1,42 @@
+section#header.full-width
+section#mission.full-width.effect
+  .container
+    .row
+      h1.line We're on a mission.
+    .row.padding.first-steps
+      .col-sm-9.one
+        p
+          | Tracksu was developed because we needed a solution for our own sales team. Seeing it work and
+          | doing wonders for us, we have decided to release it for the world.
+        p
+          | We are on a mission to make Sales force reporting similar than ever. If you have any specific
+          | requirements than we can also develop custom tailored solutions for your organization.
+        = link_to new_user_registration_path, class: "blue"
+          p Try Tracksu now, you wouldn't regret it
+  section#team.full-width.padding
+    .container
+      .row
+        .col-sm-12.content
+          h1.line Meet our team.
+          .row
+            .col-sm-3
+              .pull-left
+                = image_tag "frontend/1.jpg", class: "team_image"
+                h5
+                  strong Azm Dar
+                  br
+                  | Hustler -  Product strategy
+            .col-sm-3
+              .pull-left
+                = image_tag "frontend/2.jpg", class: "team_image"
+                h5
+                  strong Junaid Atique
+                  br
+                  | Hacker - Engineering
+            .col-sm-3
+              .pull-left
+                = image_tag "frontend/3.jpg", class: "team_image"
+                h5
+                  strong Mujtaba Shuja
+                  br
+                  | Hipster - User Experience

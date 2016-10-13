@@ -1,0 +1,39 @@
+section#header.full-width
+  .container
+    .row.centered
+      .col-xs-12
+        h2 Try tracksu free for 30 days!
+    /! /row
+  section#buckets.full-width.padding.effect
+    .row.row-table.centered
+      = link_to new_user_registration_path, class: "col-md-3 col-sm-offset-half content hidden-xs hidden-sm"
+        h3 100% Free to Start
+        p Get going without paying a dime.
+        ul
+          li
+            span No contract required
+          li
+            span No implementation fees
+          li
+            span No development needed
+        .spacer.hidden-xs.hidden-sm
+      = link_to new_user_registration_path, class: "col-sm-4 col-sm-offset-half col-md-3 content"
+        h3 Simple Monthly Fee
+        h1
+          sup> $
+          | 9
+        p per active user per month
+        .spacer.hidden-xs.hidden-sm
+      = link_to "mailto:hello@posting.ly", class: "col-md-3 content hidden-xs hidden-sm "
+        h3 Serious Business
+        p
+          | Have more than 100 people on your team?
+          span.hidden-sm.hidden-md We're happy to offer customized pricing and white-glove customer service!
+        p.btn.btn-default style="font-size:12px;"  Let's&nbsp;talk.
+    .row.padding.centered
+      h2[style="font-style: italic; font-size:1.5em;"]
+        | Ready to save your business time and money?
+      .col-xs-11.hr
+        = link_to new_user_registration_path, class: "btn btn-primary"
+          | Start a Free Trial Now →
+

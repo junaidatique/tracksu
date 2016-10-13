@@ -1,0 +1,2 @@
+module Tracksu::CompaniesHelper
+end

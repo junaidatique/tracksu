@@ -1,0 +1,29 @@
+header#header.full-width
+  .container
+    .row
+      .col-sm-6.col-md-7.content
+        h2 Sales person daily activity Tracking and Reporting made Easy
+        p Tracksu keeps track of daily customer visits by your Sales Person via their phone GPS & creates a comprehensive report of their daily activity with detail such as customer name, location, time & visit outcome.
+        a.btn.btn-primary href="#" role="button"  Start a Free Trial Now →
+        .hidden-xs.hidden-sm style="clear:both;"
+          br
+          br
+          = link_to "https://tracksu.youcanbook.me/", target: '_blank'
+            span
+              = image_tag "frontend/canlender.png"
+            | Schedule a demonstration of tracksu
+      .col-sm-6.col-md-5.img
+        = image_tag "frontend/header_img-4e66b0ab.png", class: "non-retina img-responsive"
+section#details.full-width
+  .container
+    .row.margin
+      .col-sm-12
+        h2.line
+          | How Tracksu makes Sales Force Management Easy
+        .details
+          p
+            | 1. No more hassle in making Daily Visit Report. Tracksu automates the whole process by automatically logging in all the places visited along with their time from Mobile GPS. Your Sales person would just need to enter "Customer Name" and "Comments on visit outcome" which should just take a few minutes. The reports are then available readily in the Manager's Dashboard.
+          p
+            | 2. When all the daily reports are aggregated, you would able to see a variety of reports that would help immensely in team & pipeline management. Reports like "Total Monthly visits" "Average Daily Visits", New Customers Visits, Time since a particular customer is visited, average visit per prospect, average visit per paying customer and complete history of visits for each customer profile.
+          = link_to home_tour_path, class: "blue"
+            | Check Out how Tracksu Works &rarr;
