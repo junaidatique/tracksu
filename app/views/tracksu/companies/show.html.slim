@@ -1,6 +1,7 @@
 p#notice = notice
 
-
-= link_to 'Edit', edit_company_path(@company)
+= @company.title
+br
+= link_to 'Edit', edit_tracksu_company_path(@company)
 '|
-= link_to 'Back', companies_path
+= link_to 'Back', tracksu_companies_path

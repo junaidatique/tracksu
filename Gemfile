@@ -49,7 +49,6 @@ gem 'paperclip'
 gem 'geocoder'
 gem 'moves'
 gem 'omniauth-moves'
-gem 'publishable'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

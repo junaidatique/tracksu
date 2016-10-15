@@ -2822,7 +2822,7 @@ input {
     box-sizing: border-box;
   }
   &[type="radio"], &[type="checkbox"] {
-    margin: 4px 0 0;
+    margin: 4px 5px 0 0;
     margin-top: 1px \9;
     line-height: normal;
   }
@@ -15823,6 +15823,10 @@ fieldset[disabled] .btn-fb.active {
     margin-bottom: 20px;
     background-color: #464f63;
     border-radius: 2px;
+    .panel-title{
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 16px;
+    }
     .btn-toolbar .btn {
       font-size: 11px;
       &.btn-danger {
@@ -15866,11 +15870,11 @@ fieldset[disabled] .btn-fb.active {
   }
 }
 
-@media (max-width: 480px) {
+/*@media (max-width: 480px) {
   .people-list .people-options .btn-toolbar {
     display: none;
   }
-}
+}*/
 
 /***** TIMELINE *****/
 

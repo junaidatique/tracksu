@@ -1,8 +1,13 @@
-h1 Editing company
+.panel
+  .panel-heading
+    .row
+      .col-md-12.people-list
+        .people-options.clearfix
+          .row
+            .col-md-6
+              h4.panel-title Edit Company
+            .col-md-6
 
-== render 'form'
 
-= link_to 'Show', @company
-'|
-= link_to 'Back', companies_path
-
+  .panel-body
+    == render 'form'

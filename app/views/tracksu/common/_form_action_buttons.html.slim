@@ -1,0 +1,21 @@
+.row
+  .col-sm-4
+    = link_to options[:index_path], class: 'btn btn-block btn-primary btn-quirk' do
+      i.fa.fa-angle-double-left
+      | &nbsp; Back
+  - unless options[:form].object.id.nil?
+    - path_array = [:tracksu, @company]
+    - path_array << options[:form].object unless options[:form].object.class.name == 'Company'
+    .col-sm-4
+      = link_to path_array, class: 'btn btn-block btn-info btn-quirk' do
+        i.fa.fa-eye
+        | &nbsp; Show
+  .col-sm-4 class="#{!options[:form].object.id.nil? ? 'bc' : 'col-sm-offset-4'}"
+    = options[:form].button type: 'submit', class: 'btn btn-block btn-success btn-quirk' do
+      i.fa.fa-refresh
+      - if options[:form].object.id.nil?
+        | &nbsp; Create
+      - else
+        | &nbsp; Update
+      | &nbsp;
+      = options[:form].object.class.name.titleize.downcase

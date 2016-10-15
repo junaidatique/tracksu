@@ -43,43 +43,43 @@ html
           .tab-content
             #mainmenu.tab-pane.active
               h5.sidebar-title Main Menu
-              /ul.nav.nav-pills.nav-stacked.nav-quirk
-                li.: class= ("{{ Request::is('dashboard') ? 'active' '' }}")
-                a href=("{{ url('dashboard' )}}")
-                  i.fa.fa-home
-                  span Dashboard
-                | @can('view-companies')
-                li.: class= ("{{ Request::is('companies') ? 'active' '' }}")
-                a href=("{{ url('companies' )}}")
-                  i.fa.fa-home
-                  span Companies
-                | @endcan
-                | @can('view-listings')
-                li.: class= ("{{ Request::is('listings') ? 'active' '' }}")
-                a href=("{{ url('listings' )}}")
-                  i.fa.fa-home
-                  span Users
-                | @endcan
-                | @can('view-users')
-                li.: class= ("{{ Request::is('users') ? 'active' '' }}")
-                a href=("{{ url('users' )}}")
-                  i.fa.fa-home
-                  span Users
-                | @endcan
-                | @can('view-users-detail')
-                li.: class= ("{{ Request::is('user_detail') ? 'active' '' }}")
-                a href=("{{ url('user_detail?user_id='.Auth::user()->id )}}")
-                  i.fa.fa-home
-                  span View Detail
-                | @endcan
-                | @can('view-places')
-                | {{--
-                li.: class= ("{{ Request::is('place') ? 'active' '' }}")
-                a href=("{{ route('place.index')}}")
-                  i.fa.fa-home
-                  span Places
-                | \--}}
-                | @endcan
+              ul.nav.nav-pills.nav-stacked.nav-quirk
+                li
+                  = link_to tracksu_companies_path
+                    i.fa.fa-home
+                    span Companies
+                /| @can('view-companies')
+                /li.: class= ("{{ Request::is('companies') ? 'active' '' }}")
+                /a href=("{{ url('companies' )}}")
+                /  i.fa.fa-home
+                /  span Companies
+                /| @endcan
+                /| @can('view-listings')
+                /li.: class= ("{{ Request::is('listings') ? 'active' '' }}")
+                /a href=("{{ url('listings' )}}")
+                /  i.fa.fa-home
+                /  span Users
+                /| @endcan
+                /| @can('view-users')
+                /li.: class= ("{{ Request::is('users') ? 'active' '' }}")
+                /a href=("{{ url('users' )}}")
+                /  i.fa.fa-home
+                /  span Users
+                /| @endcan
+                /| @can('view-users-detail')
+                /li.: class= ("{{ Request::is('user_detail') ? 'active' '' }}")
+                /a href=("{{ url('user_detail?user_id='.Auth::user()->id )}}")
+                /  i.fa.fa-home
+                /  span View Detail
+                /| @endcan
+                /| @can('view-places')
+                /| {{--
+                /li.: class= ("{{ Request::is('place') ? 'active' '' }}")
+                /a href=("{{ route('place.index')}}")
+                /  i.fa.fa-home
+                /  span Places
+                /| \--}}
+                /| @endcan
       .mainpanel
         .contentpanel
           .row
