@@ -18,14 +18,14 @@
         thead
           tr
             th Name
-            th Activated
+            th Email
             th Sign up Date
             th Actions
         tbody
         - @users.each do |user|
           tr
             td = user.name
-            td = user.is_activated? ? 'Yes' : 'No'
+            td = user.email
             td = user.created_at
             td
               = link_to edit_tracksu_user_path(user), class: "btn btn-success btn-quirk          btn-sm" do

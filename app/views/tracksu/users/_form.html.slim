@@ -9,6 +9,11 @@
     = f.label :name
     = f.text_field :name, class: "form-control"
   .form-group
-    = f.check_box :activated
-    = f.label :activated
+    = f.label :email
+    = f.text_field :email, class: "form-control"
+  .form-group
+    = f.label :password
+    = f.text_field :password, class: "form-control"
+
   = render 'tracksu/common/form_action_buttons', options: {form: f, index_path: tracksu_users_path}
+
