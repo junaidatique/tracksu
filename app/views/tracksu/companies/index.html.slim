@@ -26,7 +26,7 @@
           - @companies.each do |company|
             tr
               td = company.title
-              td.text-center = company.is_activated? ? 'Yes' : 'No'
+              td = company.is_activated? ? 'Yes' : 'No'
               td = company.created_at
               td
                 /= link_to tracksu_company_path(company), class: "btn btn-success btn-quirk btn-sm" do

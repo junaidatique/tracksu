@@ -22,7 +22,7 @@ html
               li
                 .btn-group
                   button.btn.btn-logged data-toggle="dropdown" type="button"
-                    = current_user.name
+                    /= current_user.name
                     span.caret
                   ul.dropdown-menu.pull-right
                     /li
@@ -48,6 +48,14 @@ html
                   = link_to tracksu_companies_path
                     i.fa.fa-home
                     span Companies
+                li
+                  = link_to tracksu_products_path
+                    i.fa.fa-product-hunt
+                    span Products
+                li
+                  = link_to tracksu_users_path
+                    i.fa.fa-user
+                    span Users
                 /| @can('view-companies')
                 /li.: class= ("{{ Request::is('companies') ? 'active' '' }}")
                 /a href=("{{ url('companies' )}}")

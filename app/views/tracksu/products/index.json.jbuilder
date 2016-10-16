@@ -1,0 +1,1 @@
+json.array! @tracksu_products, partial: 'tracksu_products/tracksu_product', as: :tracksu_product

@@ -1,0 +1,2 @@
+module Tracksu::UsersHelper
+end

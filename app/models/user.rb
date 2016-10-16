@@ -7,4 +7,15 @@ class User < ApplicationRecord
 
   belongs_to :company
   has_many :activities
+
+  def is_activated?
+=begin
+    activated?
+=end
+  end
+
+  def date_created
+    t = Time.zone.parse(created_at)
+    t.strftime("%d/%m/%Y")
+  end
 end

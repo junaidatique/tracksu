@@ -1,0 +1,24 @@
+.panel
+  .panel-heading
+    .row
+      .col-md-12.people-list
+        .people-options.clearfix
+          .row
+            .col-md-6
+              h4.panel-title New User
+            .col-md-6
+
+
+  .panel-body
+    = form_for [:tracksu, @user] do |f|
+
+      .form-group
+        = f.label :name
+        = f.text_field :name, class: "form-control"
+        .form-group
+          = f.label :email
+          = f.text_field :email, class: "form-control"
+      .form-group
+        //= f.check_box :activated
+        = f.label :activated
+      = render 'tracksu/common/form_action_buttons', options: {form: f, index_path: tracksu_users_path}

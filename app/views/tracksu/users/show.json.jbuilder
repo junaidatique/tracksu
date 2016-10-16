@@ -1,0 +1,1 @@
+json.partial! "tracksu_users/tracksu_user", tracksu_user: @tracksu_user
