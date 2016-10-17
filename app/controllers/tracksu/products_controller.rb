@@ -14,7 +14,7 @@ class Tracksu::ProductsController < Tracksu::TracksuController
 
   # GET /tracksu/products/new
   def new
-    @product = Product.new(params[:company_id])
+    @product = Product.new
   end
 
   # GET /tracksu/products/1/edit
@@ -25,6 +25,7 @@ class Tracksu::ProductsController < Tracksu::TracksuController
   # POST /tracksu/products.json
   def create
     @product = Product.new product_params
+    @product.company_id = current_user.company.id
     respond_to do |format|
       if @product.save
         format.html { redirect_to tracksu_product_path(@product), notice: 'Product was successfully created.' }
@@ -68,6 +69,6 @@ class Tracksu::ProductsController < Tracksu::TracksuController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:title, :activated, :company_id)
+      params.require(:product).permit(:title, :activated)
     end
 end

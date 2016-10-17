@@ -14,7 +14,7 @@ class Tracksu::UsersController < Tracksu::TracksuController
 
   # GET /tracksu/users/new
   def new
-    @user = User.new(params[:company_id])
+    @user = User.new
   end
 
   # GET /tracksu/users/1/edit
@@ -25,8 +25,7 @@ class Tracksu::UsersController < Tracksu::TracksuController
   # POST /tracksu/users.json
   def create
     @user = User.new user_params
-    @user.company_id = current_ability
-    @user.save
+    @user.company_id = current_user.company.id
 
     respond_to do |format|
       if @user.save

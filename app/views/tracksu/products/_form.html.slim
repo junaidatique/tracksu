@@ -11,7 +11,5 @@
   .form-group
     = f.check_box :activated
     = f.label :activated
-  .form-group
-    = f.label :company_id, "Company ID"
-    = f.text_field :company_id
+
   = render 'tracksu/common/form_action_buttons', options: {form: f, index_path: tracksu_products_path}
