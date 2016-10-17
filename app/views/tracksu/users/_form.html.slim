@@ -7,13 +7,16 @@
           li = message
   .form-group
     = f.label :name
-    = f.text_field :name, class: "form-control"
+    = f.text_field :name, class: "form-control", placeholder: 'Enter Name'
   .form-group
     = f.label :email
-    = f.text_field :email, class: "form-control"
+    = f.text_field :email, class: "form-control", placeholder: 'Enter Email'
   .form-group
     = f.label :password
-    = f.text_field :password, class: "form-control"
+    = f.password_field :password, class: "form-control", placeholder: 'Enter Password'
+  .form-group
+    = f.label :Role
+    = f.select :role_ids, class: "form-control"
 
   = render 'tracksu/common/form_action_buttons', options: {form: f, index_path: tracksu_users_path}
 

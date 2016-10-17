@@ -1,10 +1,10 @@
 class Tracksu::UsersController < Tracksu::TracksuController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_manager_to_select, only: [:new, :edit]
   # GET /tracksu/users
   # GET /tracksu/users.json
   def index
-    @users = User.all
+    @users = User.with_any_role(:manager, :sale_user).sort_by { |user| user.name }
   end
 
   # GET /tracksu/users/1
@@ -26,6 +26,7 @@ class Tracksu::UsersController < Tracksu::TracksuController
   def create
     @user = User.new user_params
     @user.company_id = current_user.company.id
+    @user.role_ids = current_user.role.ids
 
     respond_to do |format|
       if @user.save
@@ -41,6 +42,7 @@ class Tracksu::UsersController < Tracksu::TracksuController
   # PATCH/PUT /tracksu/users/1
   # PATCH/PUT /tracksu/users/1.json
   def update
+
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to tracksu_user_path(@user), notice: 'User was successfully updated.' }
@@ -67,6 +69,10 @@ class Tracksu::UsersController < Tracksu::TracksuController
     def set_user
       @user = User.find(params[:id])
     end
+  def set_manager_to_select
+    @manager = User.with_role(:manager)
+    @manager = @manager - [@user]
+  end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params

@@ -7,10 +7,12 @@ class User < ApplicationRecord
 
   belongs_to :company
   has_many :activities
-
+  has_many :products, through: :company
 
   def date_created
     t = Time.zone.parse(created_at)
     t.strftime("%d/%m/%Y")
   end
+
+
 end
