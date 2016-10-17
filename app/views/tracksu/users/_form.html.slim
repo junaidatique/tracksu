@@ -14,6 +14,9 @@
   .form-group
     = f.label :password
     = f.text_field :password, class: "form-control"
+  .form-group
+    = f.label :company_id, "Company ID"
+    = f.text_field :company_id
 
   = render 'tracksu/common/form_action_buttons', options: {form: f, index_path: tracksu_users_path}
 
