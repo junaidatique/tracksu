@@ -4,7 +4,6 @@ class Tracksu::UsersController < Tracksu::TracksuController
   before_action :set_manager_to_select, only: [:new, :edit]
 
   def index
-    @users = User.all
   end
 
   def show
