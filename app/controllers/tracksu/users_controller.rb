@@ -1,5 +1,5 @@
 class Tracksu::UsersController < Tracksu::TracksuController
-
+  load_and_authorize_resource
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :set_manager_to_select, only: [:new, :edit]
 

@@ -10,9 +10,12 @@ class Ability
       can :crud, :user
 
     elsif user.has_role? :sale_user
+      can :crud, :user
+
 
     else
       can :read, :user
+
     end
 
   end
