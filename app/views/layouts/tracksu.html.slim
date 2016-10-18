@@ -5,8 +5,9 @@ html
       | Tracksu
     = csrf_meta_tags
     = action_cable_meta_tag
-    = stylesheet_link_tag 'style', media: 'all', 'data-turbolinks-track' => 'reload'
-    = javascript_include_tag 'quirk', 'data-turbolinks-track' => 'reload'
+    = stylesheet_link_tag 'style'
+    = javascript_include_tag 'quirk'
+
   body
     header
       .headerpanel
@@ -57,44 +58,44 @@ html
                   = link_to tracksu_users_path
                     i.fa.fa-user
                     span Users
-                /| @can('view-companies')
-                /li.: class= ("{{ Request::is('companies') ? 'active' '' }}")
-                /a href=("{{ url('companies' )}}")
-                /  i.fa.fa-home
-                /  span Companies
-                /| @endcan
-                /| @can('view-listings')
-                /li.: class= ("{{ Request::is('listings') ? 'active' '' }}")
-                /a href=("{{ url('listings' )}}")
-                /  i.fa.fa-home
-                /  span Users
-                /| @endcan
-                /| @can('view-users')
-                /li.: class= ("{{ Request::is('users') ? 'active' '' }}")
-                /a href=("{{ url('users' )}}")
-                /  i.fa.fa-home
-                /  span Users
-                /| @endcan
-                /| @can('view-users-detail')
-                /li.: class= ("{{ Request::is('user_detail') ? 'active' '' }}")
-                /a href=("{{ url('user_detail?user_id='.Auth::user()->id )}}")
-                /  i.fa.fa-home
-                /  span View Detail
-                /| @endcan
-                /| @can('view-places')
-                /| {{--
-                /li.: class= ("{{ Request::is('place') ? 'active' '' }}")
-                /a href=("{{ route('place.index')}}")
-                /  i.fa.fa-home
-                /  span Places
-                /| \--}}
-                /| @endcan
+      /| @can('view-companies')
+      /li.: class= ("{{ Request::is('companies') ? 'active' '' }}")
+      /a href=("{{ url('companies' )}}")
+      /  i.fa.fa-home
+      /  span Companies
+      /| @endcan
+      /| @can('view-listings')
+      /li.: class= ("{{ Request::is('listings') ? 'active' '' }}")
+      /a href=("{{ url('listings' )}}")
+      /  i.fa.fa-home
+      /  span Users
+      /| @endcan
+      /| @can('view-users')
+      /li.: class= ("{{ Request::is('users') ? 'active' '' }}")
+      /a href=("{{ url('users' )}}")
+      /  i.fa.fa-home
+      /  span Users
+      /| @endcan
+      /| @can('view-users-detail')
+      /li.: class= ("{{ Request::is('user_detail') ? 'active' '' }}")
+      /a href=("{{ url('user_detail?user_id='.Auth::user()->id )}}")
+      /  i.fa.fa-home
+      /  span View Detail
+      /| @endcan
+      /| @can('view-places')
+      /| {{--
+      /li.: class= ("{{ Request::is('place') ? 'active' '' }}")
+      /a href=("{{ route('place.index')}}")
+      /  i.fa.fa-home
+      /  span Places
+      /| \--}}
+      /| @endcan
       .mainpanel
         .contentpanel
           .row
             .col-md-12.col-lg-12
               = yield
-    /#processing-modal.modal.modal-static.fade aria-hidden="true" data-backdrop="static" role="dialog"
+                /#processing-modal.modal.modal-static.fade aria-hidden="true" data-backdrop="static" role="dialog"
       .modal-dialog.modal-sm
         .modal-content
           .modal-body

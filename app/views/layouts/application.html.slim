@@ -5,8 +5,8 @@ html
       | Tracksu
     = csrf_meta_tags
     = action_cable_meta_tag
-    = stylesheet_link_tag 'frontend', media: 'all', 'data-turbolinks-track' => 'reload'
-    = javascript_include_tag 'frontend/all', 'data-turbolinks-track' => 'reload'
+    = stylesheet_link_tag 'frontend'
+    = javascript_include_tag 'frontend/all'
   body[class="#{@main_class}" ]
     nav.navbar.navbar-default.full-width role="navigation"
       .white-bg
