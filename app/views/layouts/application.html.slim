@@ -21,7 +21,7 @@ html
               = image_tag 'frontend/tracksu-logo.png'
           #bs-example-navbar-collapse-1.collapse.navbar-collapse
             .right.hidden-xs.hidden-sm
-              //= link_to new_user_registration_path, class: "btn btn-primary"
+              = link_to new_user_registration_path, class: "btn btn-primary"
                 | Sign Up
               - if user_signed_in?
                 = link_to tracksu_companies_path, class: "spaced login"

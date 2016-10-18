@@ -14,9 +14,12 @@
   .form-group
     = f.label :password
     = f.password_field :password, class: "form-control", placeholder: 'Enter Password'
+
   .form-group
+   - if current_user.has_role? :admin
     = f.label :Role
-    = f.select :role_ids, class: "form-control"
+    = f.select :role_ids, options_for_select(Role.without_admin.map{|s| [ s.name.titleize, s.id] },
+      @user.roles.pluck(:id)), {include_blank: 'None'},
+                                     {class: 'form-control', id:'select_user_roles', required: true}
 
   = render 'tracksu/common/form_action_buttons', options: {form: f, index_path: tracksu_users_path}
-

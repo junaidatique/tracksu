@@ -1,32 +1,26 @@
 class Tracksu::UsersController < Tracksu::TracksuController
+
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :set_manager_to_select, only: [:new, :edit]
-  # GET /tracksu/users
-  # GET /tracksu/users.json
+
   def index
-    @users = User.with_any_role(:manager, :sale_user).sort_by { |user| user.name }
+    @users = User.all
   end
 
-  # GET /tracksu/users/1
-  # GET /tracksu/users/1.json
   def show
   end
 
-  # GET /tracksu/users/new
   def new
     @user = User.new
   end
 
-  # GET /tracksu/users/1/edit
   def edit
   end
 
-  # POST /tracksu/users
-  # POST /tracksu/users.json
   def create
     @user = User.new user_params
     @user.company_id = current_user.company.id
-    @user.role_ids = current_user.role.ids
+
 
     respond_to do |format|
       if @user.save
@@ -39,8 +33,6 @@ class Tracksu::UsersController < Tracksu::TracksuController
     end
   end
 
-  # PATCH/PUT /tracksu/users/1
-  # PATCH/PUT /tracksu/users/1.json
   def update
 
     respond_to do |format|
@@ -54,8 +46,7 @@ class Tracksu::UsersController < Tracksu::TracksuController
     end
   end
 
-  # DELETE /tracksu/users/1
-  # DELETE /tracksu/users/1.json
+
   def destroy
     @user.destroy
     respond_to do |format|
@@ -65,17 +56,20 @@ class Tracksu::UsersController < Tracksu::TracksuController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
     end
+
   def set_manager_to_select
     @manager = User.with_role(:manager)
     @manager = @manager - [@user]
   end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+  def update_user_params
+    params.require(:user).permit(:name, :email, :password, :role_ids)
+  end
+
     def user_params
-      params.require(:user).permit(:name, :email, :password)
+      params.require(:user).permit(:name, :email, :password, :role_ids)
     end
 end

@@ -10,4 +10,9 @@ class Role < ApplicationRecord
             :allow_nil => true
 
   scopify
+
+  def self.without_admin
+    admin_role = find_by_name 'admin'
+    all - [admin_role]
+  end
 end

@@ -21,12 +21,12 @@ html
             ul.headermenu
               li
                 .btn-group
-                  button.btn.btn-logged data-toggle="dropdown-toggle" type="button"
+                  button.btn.btn-logged.dropdown-toggle data-toggle="dropdown" type="button"
                 =current_user.name
                 span.caret
                   ul.dropdown-menu.pull-right
                     li
-                      a href="profile"
+                      a href="#"
                         i.glyphicon.glyphicon-user
                         | My Profile
                     li
@@ -45,9 +45,10 @@ html
               h5.sidebar-title Main Menu
               ul.nav.nav-pills.nav-stacked.nav-quirk
                 li
-                  = link_to tracksu_companies_path
-                    i.fa.fa-home
-                    span Companies
+                  - if current_user.has_role? :admin
+                    = link_to tracksu_companies_path
+                      i.fa.fa-home
+                      span Companies
                 li
                   = link_to tracksu_products_path
                     i.fa.fa-product-hunt

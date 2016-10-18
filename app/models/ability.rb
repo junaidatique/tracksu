@@ -7,13 +7,12 @@ class Ability
     if user.has_role? :admin
       can :manage, :all
     elsif user.has_role? :manager
-      can :crud, user
-      can :read, Company
+      can :crud, :user
+
     elsif user.has_role? :sale_user
-      can :crud, user
-      can :read, Company
+
     else
-      can :read, :all
+      can :read, :user
     end
 
   end

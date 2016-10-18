@@ -293,3 +293,4 @@ function start_loading() {
 function stop_loading() {
     $('#processing-modal').modal('hide');
 }
+
