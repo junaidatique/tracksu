@@ -22,8 +22,8 @@ html
               li
                 .btn-group
                   button.btn.btn-logged.dropdown-toggle data-toggle="dropdown" type="button"
-                =current_user.name
-                span.caret
+                    = current_user.name
+                    span.caret
                   ul.dropdown-menu.pull-right
                     li
                       a href="#"
@@ -34,7 +34,7 @@ html
                         i.glyphicon.glyphicon-cog
                         | Account Settings
                     li
-                      = link_to destroy_user_session_path
+                      = link_to destroy_user_session_path, method: :delete
                         i.glyphicon.glyphicon-log-out
                         | Log Out
     section

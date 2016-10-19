@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   belongs_to :company
   has_many :activities
+  has_many :tracking_points
 
   def date_created
     t = Time.zone.parse(created_at)
