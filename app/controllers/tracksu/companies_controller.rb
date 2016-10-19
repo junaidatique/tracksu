@@ -1,4 +1,5 @@
 class Tracksu::CompaniesController < Tracksu::TracksuController
+  load_and_authorize_resource
   before_action :set_company, only: [:show, :edit, :update, :destroy]
 
   # GET /companies
@@ -69,6 +70,6 @@ class Tracksu::CompaniesController < Tracksu::TracksuController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
-      params.require(:company).permit(:title, :activated)
+      params.require(:companies).permit(:subdomain, :owner_attributes, :title, :activated)
     end
 end

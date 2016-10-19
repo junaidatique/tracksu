@@ -22,4 +22,10 @@
       @user.roles.pluck(:id)), {include_blank: 'None'},
                                      {class: 'form-control', id:'select_user_roles', required: true}
 
+  .form-group
+    - if current_user.has_role? :admin
+      = f.label :Company
+      = f.select :company_id, options_for_select(Company.all.map { |s| [ s.title, s.id] },
+                                               @user.roles.pluck(:id)), {include_blank: 'None'},
+                 {class: 'form-control', id: 'select_companies', required: true}
   = render 'tracksu/common/form_action_buttons', options: {form: f, index_path: tracksu_users_path}

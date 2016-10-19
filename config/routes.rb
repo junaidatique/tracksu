@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'home/tour'
   get 'home/pricing'
   get 'home/about'
+
   namespace :api do
 
   end
@@ -18,6 +19,9 @@ Rails.application.routes.draw do
     resources :companies
     resources :products
   end
+
+  resources :companies
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

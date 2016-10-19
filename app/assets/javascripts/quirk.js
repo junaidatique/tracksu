@@ -1,8 +1,6 @@
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap
 //= require bootstrap-sprockets
-//= require turbolinks
 //= require tracksujs/toggles
 //= require tracksujs/jquery.dataTables
 //= require tracksujs/dropzone

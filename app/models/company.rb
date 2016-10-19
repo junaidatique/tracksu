@@ -1,7 +1,9 @@
 class Company < ApplicationRecord
+
   has_many :users, dependent: :destroy
   has_many :places, dependent: :destroy
   has_many :products, dependent: :destroy
+
   def is_activated?
     activated?
   end
