@@ -5,8 +5,8 @@ html
       | Tracksu
     = csrf_meta_tags
     = action_cable_meta_tag
-    = stylesheet_link_tag 'style', media: 'all', 'data-turbolinks-track' => 'reload'
-    = javascript_include_tag 'quirk', 'data-turbolinks-track' => 'reload'
+    = stylesheet_link_tag 'style'
+    = javascript_include_tag 'quirk'
   body
     header
       .headerpanel
@@ -21,7 +21,7 @@ html
             ul.headermenu
               li
                 .btn-group
-                  button.btn.btn-logged.dropdown-toggle data-toggle="dropdown" type="button"
+                  button.btn.btn-default data-toggle="dropdown" type="button"
                     = current_user.name
                     span.caret
                   ul.dropdown-menu.pull-right
@@ -94,10 +94,3 @@ html
           .row
             .col-md-12.col-lg-12
               = yield
-    /#processing-modal.modal.modal-static.fade aria-hidden="true" data-backdrop="static" role="dialog"
-      .modal-dialog.modal-sm
-        .modal-content
-          .modal-body
-            .text-center
-              img.icon src="{{url('assets/images/loader.gif')}}" /
-              h4 Processing...

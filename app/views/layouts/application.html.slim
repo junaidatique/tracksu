@@ -5,8 +5,8 @@ html
       | Tracksu
     = csrf_meta_tags
     = action_cable_meta_tag
-    = stylesheet_link_tag 'frontend', media: 'all', 'data-turbolinks-track' => 'reload'
-    = javascript_include_tag 'frontend/all', 'data-turbolinks-track' => 'reload'
+    = stylesheet_link_tag 'frontend'
+    = javascript_include_tag 'frontend/all'
   body[class="#{@main_class}" ]
     nav.navbar.navbar-default.full-width role="navigation"
       .white-bg
@@ -21,14 +21,16 @@ html
               = image_tag 'frontend/tracksu-logo.png'
           #bs-example-navbar-collapse-1.collapse.navbar-collapse
             .right.hidden-xs.hidden-sm
-              = link_to new_user_registration_path, class: "btn btn-primary"
-                | Sign Up
+
               - if user_signed_in?
                 = link_to tracksu_companies_path, class: "spaced login"
                   | Tracksu
               - else
+                = link_to new_company_path, class: "btn btn-primary"
+                  | Sign Up
                 = link_to new_user_session_path, class: "spaced login"
                   | Log In
+
               /a.btn.btn-primary href="{{ url('auth/register') }}"  Sign Up
               /a.spaced.login href=("{{ url('auth/login') }}")  Log In
             ul.nav.navbar-nav

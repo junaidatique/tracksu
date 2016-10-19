@@ -1,9 +1,9 @@
 class User < ApplicationRecord
   rolify
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+
+  devise :database_authenticatable, :recoverable, :rememberable, :validatable
+
+  validates :name, presence: true
 
   belongs_to :company
   has_many :activities
@@ -20,9 +20,9 @@ class User < ApplicationRecord
     if has_role? :admin
       unless role_id.blank?
         role = Role.find role_id
-        if role.name == 'team_member'
+        if role.name == 'sale_user'
           # trainings.update_all deleted_at: Time.zone.now
-          self.team_lead_type = nil
+          self.admin_type = nil
         end
       end
     end

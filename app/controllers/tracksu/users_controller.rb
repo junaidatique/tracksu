@@ -1,7 +1,7 @@
 class Tracksu::UsersController < Tracksu::TracksuController
   load_and_authorize_resource
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :set_manager_to_select, only: [:new, :edit]
+
 
   def index
   end
@@ -58,11 +58,6 @@ class Tracksu::UsersController < Tracksu::TracksuController
     def set_user
       @user = User.find(params[:id])
     end
-
-  def set_manager_to_select
-    @manager = User.with_role(:manager)
-    @manager = @manager - [@user]
-  end
 
   def update_user_params
     params.require(:user).permit(:name, :email, :password, :role_ids)

@@ -1,0 +1,27 @@
+.sign-overlay
+.signpanel
+.panel.signin
+  .panel-heading
+    h1
+    h4.panel-title
+      | Sign up
+  .panel-body
+    = form_for @company do |f|
+      .form-group
+        = f.label 'Company Title'
+        = f.text_field :title, class: "form-control", placeholder: 'Enter Company Title'
+      .form-group
+        = f.label 'Your Name'
+        = text_field_tag :name, "", class: "form-control", placeholder: 'Enter Your Name'
+      .form-group
+        = f.label 'Email'
+        = text_field_tag :email, "", class: "form-control", placeholder: 'Enter Email', required: true
+      .form-group
+        = f.label 'Password'
+        = password_field_tag :password, "", class: "form-control", placeholder: 'Enter Password'
+      .form-group
+        = f.label 'Password Confirmation'
+        = password_field_tag :password_confirmation, "", class: "form-control", placeholder: 'Enter Password'
+      .form-group
+        = f.submit "Sign up",class: "btn btn-success btn-quirk btn-block"
+
