@@ -6,7 +6,7 @@
           .row
             .col-md-6
               h4.panel-title Users
-            - if current_user.has_role? :admin
+            - if can? :create, User
               .col-md-6
                 .btn-toolbar.pull-right
                   = link_to new_tracksu_user_path, class: "btn btn-success btn-quirk"

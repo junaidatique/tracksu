@@ -6,22 +6,34 @@
     h4.panel-title
       | Sign up
   .panel-body
+    - if @company.errors.any?
+      .alert.alert-danger
+        h2 = "#{pluralize(@company.errors.count, "error")} prohibited this user from being saved:"
+        ul
+          - @company.errors.full_messages.each do |message|
+            li = message
     = form_for @company do |f|
       .form-group
-        = f.label 'Company Title'
-        = f.text_field :title, class: "form-control", placeholder: 'Enter Company Title'
+        = f.label :title
+        = f.text_field :title, class: 'form-control', placeholder: "Company Title"
+      = f.fields_for :users do |p|
+        .form-group
+          = p.label :name
+          = p.text_field :name, class: 'form-control', placeholder: "Enter Name"
+        .form-group
+          = p.label :email
+          = p.text_field :email, class: 'form-control', placeholder: "Enter Email"
+        .form-group
+          = p.label :password
+          = p.password_field :password, class: 'form-control', placeholder: "Enter Password"
+        .form-group
+          = p.label :password_confirmation
+          = p.password_field :password_confirmation, class: 'form-control', placeholder: "Enter Password Confirmation"
       .form-group
-        = f.label 'Your Name'
-        = text_field_tag :name, "", class: "form-control", placeholder: 'Enter Your Name'
-      .form-group
-        = f.label 'Email'
-        = text_field_tag :email, "", class: "form-control", placeholder: 'Enter Email', required: true
-      .form-group
-        = f.label 'Password'
-        = password_field_tag :password, "", class: "form-control", placeholder: 'Enter Password'
-      .form-group
-        = f.label 'Password Confirmation'
-        = password_field_tag :password_confirmation, "", class: "form-control", placeholder: 'Enter Password'
-      .form-group
-        = f.submit "Sign up",class: "btn btn-success btn-quirk btn-block"
+        = f.submit class: "btn btn-success btn-quirk btn-block"
+    hr.invisible
+    .form-group
+      = link_to new_user_session_path, class: "btn btn-default btn-quirk btn-stroke btn-stroke-thin btn-block btn-sign"
+        | Log In
+        br
 

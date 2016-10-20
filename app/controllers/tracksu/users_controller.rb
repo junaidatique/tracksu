@@ -23,7 +23,7 @@ class Tracksu::UsersController < Tracksu::TracksuController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to tracksu_user_path(@user), notice: 'User was successfully created.' }
+        format.html { redirect_to tracksu_users_path, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -36,7 +36,7 @@ class Tracksu::UsersController < Tracksu::TracksuController
 
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to tracksu_user_path(@user), notice: 'User was successfully updated.' }
+        format.html { redirect_to tracksu_users_path, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
