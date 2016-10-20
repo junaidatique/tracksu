@@ -7,9 +7,9 @@
       | Log in
   .panel-body
     = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-      - unless resource.errors.blank?
+      - if flash[:alert]
         .alert.alert-danger
-          = devise_error_messages!
+          = content_tag(:div, flash[:alert], :id => "flash_notice")
       .form-group.mb10
         = f.label :email
         = f.email_field :email, autofocus: true, class: "form-control", required: :required

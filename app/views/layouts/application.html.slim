@@ -23,7 +23,7 @@ html
             .right.hidden-xs.hidden-sm
 
               - if user_signed_in?
-                = link_to tracksu_companies_path, class: "spaced login"
+                = link_to tracksu_products_path, class: "spaced login"
                   | Tracksu
               - else
                 = link_to new_company_path, class: "btn btn-primary"

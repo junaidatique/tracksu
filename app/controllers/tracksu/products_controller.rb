@@ -1,10 +1,11 @@
 class Tracksu::ProductsController < Tracksu::TracksuController
+  load_and_authorize_resource
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   # GET /tracksu/products
   # GET /tracksu/products.json
   def index
-    @products = Product.all
+
   end
 
   # GET /tracksu/products/1
@@ -28,7 +29,7 @@ class Tracksu::ProductsController < Tracksu::TracksuController
     @product.company_id = current_user.company.id
     respond_to do |format|
       if @product.save
-        format.html { redirect_to tracksu_product_path(@product), notice: 'Product was successfully created.' }
+        format.html { redirect_to tracksu_products_path, notice: 'Product was successfully created.' }
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class Tracksu::ProductsController < Tracksu::TracksuController
   def update
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to tracksu_product_path(@product), notice: 'Product was successfully updated.' }
+        format.html { redirect_to tracksu_products_path, notice: 'Product was successfully updated.' }
         format.json { render :show, status: :ok, location: @product }
       else
         format.html { render :edit }

@@ -4,6 +4,10 @@ class Company < ApplicationRecord
   has_many :places, dependent: :destroy
   has_many :products, dependent: :destroy
 
+  accepts_nested_attributes_for :users
+
+  validates_presence_of :title
+
   def is_activated?
     activated?
   end

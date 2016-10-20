@@ -16,7 +16,6 @@
     = f.password_field :password, class: "form-control", placeholder: 'Enter Password'
 
   .form-group
-   - if current_user.has_role? :admin
     = f.label :Role
     = f.select :role_ids, options_for_select(Role.without_admin.map{|s| [ s.name.titleize, s.id] },
       @user.roles.pluck(:id)), {include_blank: 'None'},

@@ -1,37 +1,32 @@
 class CompaniesController < ApplicationController
   layout "devise"
+
+  def index
+    redirect_to new_company_path
+  end
+
   def new
     @company = Company.new
+    @company.users.new
   end
 
   def create
-    puts params[:email].inspect
-    puts account_params.inspect
-    @company = Company.new(account_params)
-    @company.activated = true
+    @company = Company.new account_params
+    #@company.users.first.user_id = current_user_id
     if @company.save
-      user = User.new
-      user.email = params[:email]
-      user.name = params[:name]
-      user.password = params[:password]
-      user.company = @company
-      if user.save
-        user.add_role :director
-        sign_in(user)
-        redirect_to root_path, notice: 'Signed up successfully'
-      else
-        puts @company.errors.inspect
-        puts user.errors.inspect
-        #render action: 'new'
-      end
+      user = @company.users.first
+      user.add_role :director
+      sign_in user
+      redirect_to tracksu_products_path
     else
-      #render action: 'new'
+      render :action => :new
     end
   end
 
+
   private
   def account_params
-    params.require(:company).permit(:title)
+    params.require(:company).permit( :title, users_attributes: [:name, :email, :password, :password_confirmation])
   end
 
 end
