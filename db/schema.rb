@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161016134628) do
+ActiveRecord::Schema.define(version: 20161023182503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,13 @@ ActiveRecord::Schema.define(version: 20161016134628) do
     t.integer  "place_id"
     t.index ["place_id"], name: "index_activities_on_place_id", using: :btree
     t.index ["user_id"], name: "index_activities_on_user_id", using: :btree
+  end
+
+  create_table "activities_purposes", force: :cascade do |t|
+    t.integer "activity_id"
+    t.integer "purpose_id"
+    t.index ["activity_id"], name: "index_activities_purposes_on_activity_id", using: :btree
+    t.index ["purpose_id"], name: "index_activities_purposes_on_purpose_id", using: :btree
   end
 
   create_table "companies", force: :cascade do |t|
@@ -50,12 +57,12 @@ ActiveRecord::Schema.define(version: 20161016134628) do
   create_table "places", force: :cascade do |t|
     t.integer  "company_id"
     t.string   "name"
-    t.string   "type"
+    t.string   "customer_type"
     t.string   "latitude"
     t.string   "longitude"
     t.integer  "external_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.index ["company_id"], name: "index_places_on_company_id", using: :btree
   end
 
@@ -68,6 +75,15 @@ ActiveRecord::Schema.define(version: 20161016134628) do
     t.index ["company_id"], name: "index_products_on_company_id", using: :btree
   end
 
+  create_table "purposes", force: :cascade do |t|
+    t.string   "title"
+    t.boolean  "activated"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "company_id"
+    t.index ["company_id"], name: "index_purposes_on_company_id", using: :btree
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string   "name"
     t.string   "resource_type"
@@ -76,6 +92,17 @@ ActiveRecord::Schema.define(version: 20161016134628) do
     t.datetime "updated_at"
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
     t.index ["name"], name: "index_roles_on_name", using: :btree
+  end
+
+  create_table "saleproducts", force: :cascade do |t|
+    t.integer  "activity_id"
+    t.integer  "product_id"
+    t.decimal  "rate"
+    t.integer  "quantity"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["activity_id"], name: "index_saleproducts_on_activity_id", using: :btree
+    t.index ["product_id"], name: "index_saleproducts_on_product_id", using: :btree
   end
 
   create_table "tracking_points", force: :cascade do |t|
@@ -119,6 +146,9 @@ ActiveRecord::Schema.define(version: 20161016134628) do
   add_foreign_key "histories", "users"
   add_foreign_key "places", "companies"
   add_foreign_key "products", "companies"
+  add_foreign_key "purposes", "companies"
+  add_foreign_key "saleproducts", "activities"
+  add_foreign_key "saleproducts", "products"
   add_foreign_key "tracking_points", "activities"
   add_foreign_key "users", "companies"
 end

@@ -1,4 +1,4 @@
 class Place < ApplicationRecord
   belongs_to :company
-  belongs_to :activity
+  has_many :activities
 end

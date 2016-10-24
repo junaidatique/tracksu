@@ -1,0 +1,10 @@
+tr.nested-fields
+  td
+    = f.collection_select(:product_id, Product.all, :id, :title, {}, {class: 'form-control', id: 'select_product', required: true})
+  td
+    = f.text_field :rate, class: 'form-control country-field', placeholder: 'Product Rate'
+  td
+    = f.text_field :quantity, class: 'form-control code-field', placeholder: 'Product Quentity'
+  td
+    = link_to_remove_association f, class: 'btn btn-block btn-danger btn-flat' do
+      i.fa.fa-trash

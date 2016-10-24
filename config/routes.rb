@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   namespace :tracksu do
     resources :users
   end
@@ -18,6 +19,8 @@ Rails.application.routes.draw do
   namespace :tracksu do
     resources :companies
     resources :products
+    resources :purposes
+    resources :activities
   end
 
   resources :companies

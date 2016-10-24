@@ -9,6 +9,9 @@
 //= require tracksujs/raphael
 //= require tracksujs/jquery.knob
 //= require tracksujs/jquery.timepicker
+//= require moment
+//= require bootstrap-datetimepicker
+//= require cocoon
 
 $(document).ready(function() {
 

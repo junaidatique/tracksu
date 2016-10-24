@@ -58,6 +58,14 @@ html
                   = link_to tracksu_users_path
                     i.fa.fa-user
                     span Users
+                li
+                  = link_to tracksu_purposes_path
+                    i.fa.fa-user
+                    span Purposes
+                li
+                  = link_to tracksu_activities_path
+                    i.fa.fa-user
+                    span Activities
       /| @can('view-companies')
       /li.: class= ("{{ Request::is('companies') ? 'active' '' }}")
       /a href=("{{ url('companies' )}}")

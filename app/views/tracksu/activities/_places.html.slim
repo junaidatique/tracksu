@@ -1,0 +1,14 @@
+tr.nested-fields
+  - unless f.object.blank?
+    = hidden_field_tag 'valid_value','valid', class: 'valid-value'
+  - else
+    = hidden_field_tag 'valid_value','invalid', class: 'valid-value'
+  td
+    = f.text_field :name, class: 'form-control market-field', placeholder: 'Place Name'
+  td
+    = f.text_field :latitude, class: 'form-control country-field', placeholder: 'Latitude'
+  td
+    = f.text_field :longitude, class: 'form-control code-field', placeholder: 'Longitude'
+  /td
+    = link_to_remove_association f, class: 'btn btn-block btn-danger btn-flat' do
+      i.fa.fa-trash
