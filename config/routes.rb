@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   namespace :tracksu do
-    resources :users
+    resources :places
   end
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
@@ -21,9 +21,17 @@ Rails.application.routes.draw do
     resources :products
     resources :purposes
     resources :activities
+    resources :users do
+      collection do
+        get 'change_password'
+        patch 'update_password'
+      end
+    end
   end
 
   resources :companies
+
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -13,6 +13,8 @@ class Ability
       can :read, User, :company_id => user.company_id
       can :update, User, :company_id => user.company_id
       can :destroy, User, :company_id => user.company_id
+      can :change_password, User, :id => user.id
+      can :update_password, User, :id => user.id
 
       can :create, Product
       can :index, Product, :company_id => user.company_id
@@ -28,6 +30,8 @@ class Ability
       can :read, User, :company_id => user.company_id
       can :update, User, :company_id => user.company_id
       can :destroy, User, :company_id => user.company_id
+      can :change_password, User, :id => user.id
+      can :update_password, User, :id => user.id
 
       can :create, Product
       can :index, Product, :company_id => user.company_id
@@ -42,7 +46,9 @@ class Ability
 
     elsif user.has_role? :sale_user
       can :index, Product, :company_id => user.company_id
-
+      can :index, User, :company_id => user.company_id
+      can :change_password, User, :id => user.id
+      can :update_password, User, :id => user.id
 
     else
       can :read, :user

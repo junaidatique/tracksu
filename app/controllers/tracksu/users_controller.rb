@@ -7,6 +7,8 @@ class Tracksu::UsersController < Tracksu::TracksuController
   end
 
   def show
+    @activites = @user.activities.where('DATE(star_time) = ?', Date.today)
+    @date = Date.today
   end
 
   def new
@@ -14,6 +16,7 @@ class Tracksu::UsersController < Tracksu::TracksuController
   end
 
   def edit
+
   end
 
   def create
@@ -23,7 +26,7 @@ class Tracksu::UsersController < Tracksu::TracksuController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to tracksu_users_path, notice: 'User was successfully created.' }
+        format.html { redirect_to tracksu_user_path(@user), notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -53,15 +56,31 @@ class Tracksu::UsersController < Tracksu::TracksuController
       format.json { head :no_content }
     end
   end
+  def change_password
+    @user = current_user
+  end
+  def update_password
+    @user = User.find(current_user.id)
+    if @user.update_with_password(use_params)
+      bypass_sign_in(@user)
+      redirect_to root_path
+    else
+      render "edit"
+    end
+  end
 
   private
     def set_user
       @user = User.find(params[:id])
     end
 
-  def update_user_params
-    params.require(:user).permit(:name, :email, :password, :role_ids)
-  end
+    def use_params
+      params.require(:user).permit(:current_password, :password, :password_confirmation)
+    end
+
+    def update_user_params
+      params.require(:user).permit(:name, :email, :password, :role_ids)
+    end
 
     def user_params
       params.require(:user).permit(:name, :email, :password, :role_ids)

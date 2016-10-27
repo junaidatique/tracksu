@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161023182503) do
+ActiveRecord::Schema.define(version: 20161026090054) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20161023182503) do
   create_table "activities", force: :cascade do |t|
     t.integer  "user_id"
     t.date     "activity_date"
-    t.string   "type"
+    t.string   "customer_type"
     t.datetime "start_time"
     t.datetime "end_time"
     t.integer  "duration"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20161023182503) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.integer  "place_id"
+    t.text     "comment"
     t.index ["place_id"], name: "index_activities_on_place_id", using: :btree
     t.index ["user_id"], name: "index_activities_on_user_id", using: :btree
   end
@@ -58,11 +59,12 @@ ActiveRecord::Schema.define(version: 20161023182503) do
     t.integer  "company_id"
     t.string   "name"
     t.string   "customer_type"
-    t.string   "latitude"
-    t.string   "longitude"
+    t.float    "latitude"
+    t.float    "longitude"
     t.integer  "external_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.string   "address"
     t.index ["company_id"], name: "index_places_on_company_id", using: :btree
   end
 
@@ -97,7 +99,7 @@ ActiveRecord::Schema.define(version: 20161023182503) do
   create_table "saleproducts", force: :cascade do |t|
     t.integer  "activity_id"
     t.integer  "product_id"
-    t.decimal  "rate"
+    t.float    "rate"
     t.integer  "quantity"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
@@ -120,7 +122,7 @@ ActiveRecord::Schema.define(version: 20161023182503) do
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,  null: false                 ;
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"

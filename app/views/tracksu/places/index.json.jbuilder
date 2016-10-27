@@ -1,0 +1,1 @@
+json.array! @tracksu_places, partial: 'tracksu_places/tracksu_place', as: :tracksu_place
