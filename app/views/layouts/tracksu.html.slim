@@ -50,6 +50,10 @@ html
               h5.sidebar-title Main Menu
               ul.nav.nav-pills.nav-stacked.nav-quirk
                 li
+                  = link_to tracksu_user_path(current_user)
+                    i.fa.fa-user
+                    span Dashboard
+                li
                   - if current_user.has_role? :admin
                     = link_to tracksu_companies_path
                       i.fa.fa-home
@@ -74,10 +78,7 @@ html
                   = link_to tracksu_places_path
                     i.fa.fa-user
                     span Places
-                li
-                  = link_to tracksu_user_path(current_user)
-                    i.fa.fa-user
-                    span Dashboard
+
       /| @can('view-companies')
       /li.: class= ("{{ Request::is('companies') ? 'active' '' }}")
       /a href=("{{ url('companies' )}}")
