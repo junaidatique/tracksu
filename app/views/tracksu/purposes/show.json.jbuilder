@@ -1,0 +1,1 @@
+json.partial! "tracksu_purposes/tracksu_purpose", tracksu_purpose: @tracksu_purpose

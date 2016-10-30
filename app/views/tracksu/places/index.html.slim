@@ -1,0 +1,35 @@
+.panel
+  .panel-heading
+    .row
+      .col-md-12.people-list
+        .people-options.clearfix
+          .row
+            .col-md-6
+              h4.panel-title Places
+            .col-md-6
+              .btn-toolbar.pull-right
+                = link_to new_tracksu_place_path, class: "btn btn-success btn-quirk"
+                  i.fa.fa-plus
+                  |&nbsp;&nbsp;Add New Place
+
+  .panel-body
+    div
+      table#dataTable1.table.table-bordered.table-striped-col
+        thead
+          tr
+            th Name
+            th Address
+            th Actions
+        tbody
+        - @places.each do |place|
+          tr
+            td = place.name
+            td = image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{place.latitude},#{place.longitude}&markers=#{place.latitude},#{place.longitude}&zoom=7&size=640x400&key=AIzaSyA4BHW3txEdqfxzdTlPwaHsYRSZbfeIcd8", \
+  class: 'img-fluid img-rounded'
+
+            td
+              = link_to edit_tracksu_place_path(place), class: "btn btn-success btn-quirk          btn-sm" do
+                i.fa.fa-pencil
+              |&nbsp;
+              = link_to tracksu_place_path(place), data: {confirm: 'Are you sure?'}, method: :delete, class: "btn btn-success btn-quirk btn-sm" do
+                i.fa.fa-trash

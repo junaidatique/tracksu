@@ -1,0 +1,1 @@
+json.array! @tracksu_purposes, partial: 'tracksu_purposes/tracksu_purpose', as: :tracksu_purpose

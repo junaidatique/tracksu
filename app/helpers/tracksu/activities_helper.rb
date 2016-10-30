@@ -1,0 +1,2 @@
+module Tracksu::ActivitiesHelper
+end

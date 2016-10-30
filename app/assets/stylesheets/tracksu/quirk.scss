@@ -1691,6 +1691,14 @@ a.bg-danger {
   margin: 34px 0 17px;
   border-bottom: 1px solid #eeeeee;
 }
+.checklable { margin-left: 0px !important; margin-right: 30px !important; padding: 2px !important; font-size: 14px; }
+.right { float: right;}
+input#activity_place_attributes_customer_type_1 { margin-left: -20px; }
+.margin-left { margin-left: -20px; }
+.mb101 { display: inline-block; margin-right: 7px;}
+.form-group.purposes-radio { font-size: 14px; }
+.form-group.text-dt { font-size: 13px; }
+
 
 ul, ol {
   margin-top: 0;
@@ -16935,4 +16943,3 @@ fieldset[disabled] .btn-fb.active {
     display: block;
   }
 }
-

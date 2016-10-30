@@ -1,0 +1,15 @@
+= form_for [:tracksu, @purpose] do |f|
+  - if @purpose.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@purpose.errors.count, "error")} prohibited this purpose from being saved:"
+      ul
+        - @purpose.errors.full_messages.each do |message|
+          li = message
+  .form-group
+    = f.label :title
+    = f.text_field :title, class: "form-control"
+  .form-group
+    = f.check_box :activated
+    = f.label :activated
+
+  = render 'tracksu/common/form_action_buttons', options: {form: f, index_path: tracksu_purposes_path}

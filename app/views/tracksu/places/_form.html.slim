@@ -1,0 +1,21 @@
+= form_for [:tracksu, @place] do |f|
+  - if @place.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@place.errors.count, "error")} prohibited this place from being saved:"
+      ul
+        - @place.errors.full_messages.each do |message|
+          li = message
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: "form-control"
+  .form-group
+    = f.label :address
+    = f.text_field :address, class: "form-control"
+  .form-group
+    = f.label :latitude
+    = f.text_field :latitude, class: "form-control"
+  .form-group
+    = f.label :longitude
+    = f.text_field :longitude, class: "form-control"
+
+  = render 'tracksu/common/form_action_buttons', options: {form: f, index_path: tracksu_places_path}
