@@ -13,9 +13,27 @@ Rails.application.routes.draw do
   get 'home/pricing'
   get 'home/about'
 
-  namespace :api do
-
+  namespace :api, defaults: { format: 'json' } do
+    namespace :v1 do
+      resources :users do
+        collection do
+          post 'log_in'
+          delete 'log_out'
+          put 'update'
+          post 'reset_password'
+          post 'update_password'
+        end
+      end
+      resources :activities, only: [:index, :create, :update, :destroy] do
+        collection do
+          put 'update'
+          delete 'destroy'
+        end
+      end
+    end
   end
+
+
   namespace :tracksu do
     resources :companies
     resources :products
