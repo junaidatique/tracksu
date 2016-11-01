@@ -7,8 +7,15 @@ class Tracksu::UsersController < Tracksu::TracksuController
   end
 
   def show
-    @activites = @user.activities.where('DATE(star_time) = ?', Date.today)
-    @date = Date.today
+    if params['search_date'].present?
+      @activities = @user.activities.where('activity_date = ?', Date.strptime(params['search_date'], "%d/%m/%Y"))
+      @date = params['search_date']
+    else
+      @activities = @user.activities.where('activity_date = ?', Date.today)
+      @date = Date.today
+    end
+
+
   end
 
   def new
@@ -26,7 +33,7 @@ class Tracksu::UsersController < Tracksu::TracksuController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to tracksu_user_path(@user), notice: 'User was successfully created.' }
+        format.html { redirect_to tracksu_users_path, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }

@@ -1,9 +1,9 @@
 class Tracksu::PurposesController < Tracksu::TracksuController
-
+  load_and_authorize_resource
   before_action :set_purpose, only: [:show, :edit, :update, :destroy]
 
   def index
-    @purposes = Purpose.all
+    #@purposes = Purpose.all
   end
 
   def show
@@ -17,7 +17,7 @@ class Tracksu::PurposesController < Tracksu::TracksuController
   end
 
   def create
-    @purpose = Purpose.new(purpose_params)
+    @purpose = current_user.company.purposes.new(purpose_params)
     respond_to do |format|
       if @purpose.save
         format.html { redirect_to tracksu_purposes_path, notice: 'Purpose was successfully created.' }

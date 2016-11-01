@@ -1,14 +1,14 @@
 class Tracksu::ActivitiesController < Tracksu::TracksuController
-
+  load_and_authorize_resource
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
 
 
   def index
-    @activities = Activity.all
+    #@activities = Activity.all
   end
 
   def show
-    @activities = Activity.all
+    #@activities = Activity.all
   end
 
 

@@ -1,8 +1,9 @@
 class Tracksu::PlacesController < Tracksu::TracksuController
+  load_and_authorize_resource
   before_action :set_place, only: [:show, :edit, :update, :destroy]
 
   def index
-    @places = Place.all
+
   end
 
   def show

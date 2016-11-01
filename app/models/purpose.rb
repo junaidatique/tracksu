@@ -1,5 +1,8 @@
 class Purpose < ApplicationRecord
+  belongs_to :company
   has_and_belongs_to_many :activities
+
+  scope :activated, -> { where(activated: true) }
 
   def is_activated?
     activated?

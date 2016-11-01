@@ -17,7 +17,7 @@ class CompaniesController < ApplicationController
       user = @company.users.first
       user.add_role :director
       sign_in user
-      redirect_to tracksu_products_path
+      redirect_to tracksu_user_path current_user
     else
       render :action => :new
     end

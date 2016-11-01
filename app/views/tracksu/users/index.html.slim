@@ -9,7 +9,7 @@
             - if can? :create, User
               .col-md-6
                 .btn-toolbar.pull-right
-                  = link_to new_tracksu_user_path, class: "btn btn-success btn-quirk"
+                  = link_to new_tracksu_user_path, class: 'btn btn-success btn-quirk'
                     i.fa.fa-plus
                     |&nbsp;&nbsp;Add New User
 
@@ -29,11 +29,13 @@
             td = user.email
             td = user.created_at
             td
-              = link_to edit_tracksu_user_path(user), class: "btn btn-success btn-quirk          btn-sm" do
-                i.fa.fa-pencil
-              |&nbsp;
-              = link_to tracksu_user_path(user), data: {confirm: 'Are you sure?'}, method: :delete, class: "btn btn-success btn-quirk btn-sm" do
-                i.fa.fa-trash
-              |&nbsp;
-              = link_to tracksu_user_path(user), class: "btn btn-success btn-quirk btn-sm"
+              - if can? :update, user
+                = link_to edit_tracksu_user_path(user), class: 'btn btn-success btn-quirk btn-sm' do
+                  i.fa.fa-pencil
+                |&nbsp;
+              - if can? :destroy, user
+                = link_to tracksu_user_path(user), data: {confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-success btn-quirk btn-sm' do
+                  i.fa.fa-trash
+                |&nbsp;
+              = link_to tracksu_user_path(user), class: 'btn btn-success btn-quirk btn-sm'
                 | User Detail

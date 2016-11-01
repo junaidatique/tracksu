@@ -21,7 +21,7 @@
             .form-group.checkbox-inline.text-dt
               h4.panel-title.mb101.margin-left
                 | Customer Type:
-              = @activity.place.customer_type
+              = @activity.place.customer_type ? 'Customer' : 'Prospect'
           .col-md-6
             .form-group.text-dt
               h4.panel-title.mb101

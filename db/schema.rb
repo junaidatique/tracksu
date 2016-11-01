@@ -122,7 +122,7 @@ ActiveRecord::Schema.define(version: 20161026090054) do
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false                 ;
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
@@ -151,6 +151,6 @@ ActiveRecord::Schema.define(version: 20161026090054) do
   add_foreign_key "purposes", "companies"
   add_foreign_key "saleproducts", "activities"
   add_foreign_key "saleproducts", "products"
-  add_foreign_key "tracking_points", "activities"
+  add_foreign_key "tracking_points", "users", column: "users_id"
   add_foreign_key "users", "companies"
 end

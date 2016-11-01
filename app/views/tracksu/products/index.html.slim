@@ -8,9 +8,10 @@
               h4.panel-title Products
             .col-md-6
               .btn-toolbar.pull-right
-                = link_to new_tracksu_product_path, class: "btn btn-success btn-quirk"
-                  i.fa.fa-plus
-                  |&nbsp;&nbsp;Add New Product
+                - if can? :create, Product
+                  = link_to new_tracksu_product_path, class: "btn btn-success btn-quirk"
+                    i.fa.fa-plus
+                    |&nbsp;&nbsp;Add New Product
 
   .panel-body
     div
@@ -28,9 +29,11 @@
             td = product.is_activated? ? 'Yes' : 'No'
             td = product.created_at
             td
-              = link_to edit_tracksu_product_path(product), class: "btn btn-success btn-quirk          btn-sm" do
-                i.fa.fa-pencil
-              |&nbsp;
-              = link_to tracksu_product_path(product), data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-success btn-quirk btn-sm" do
-                i.fa.fa-trash
+              - if can? :update, User
+                = link_to edit_tracksu_product_path(product), class: "btn btn-success btn-quirk          btn-sm" do
+                  i.fa.fa-pencil
+                |&nbsp;
+              - if can? :destroy, User
+                = link_to tracksu_product_path(product), data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-success btn-quirk btn-sm" do
+                  i.fa.fa-trash
 

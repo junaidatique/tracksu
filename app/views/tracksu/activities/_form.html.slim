@@ -5,7 +5,7 @@
         .form-group
           h4.panel-title.mb10
             | Place
-          = p.select :id, options_for_select(Place.all.map { |s| [s.name.titleize, s.id] },@activity.place_id), {include_blank: 'Select'}, {class: 'form-control', id: 'select_user_roles', required: true}
+          = p.select :id, options_for_select(current_user.company.places.all.map { |s| [s.name.titleize, s.id] },@activity.place_id), {include_blank: 'Select'}, {class: 'form-control', id: 'select_user_roles', required: true}
         .form-group.checkbox-inline
           h4.panel-title.mb10.margin-left
             | Customer Type
@@ -32,7 +32,7 @@
             hr.invisible
             h4.panel-title.mb10
               | Purpose
-            = f.collection_check_boxes(:purpose_ids, Purpose.all, :id, :title) do |purpose|
+            = f.collection_check_boxes(:purpose_ids, current_user.company.purposes.activated.all, :id, :title) do |purpose|
               = purpose.check_box + purpose.text.titleize
               br
             hr.invisible
@@ -56,8 +56,7 @@
       = f.fields_for :saleproducts do |smr|
         = render 'tracksu/activities/saleproduct_fields', f: smr
 
-  .form-group
-    = f.submit class: "btn btn-success btn-quirk btn-block"
+  = render 'tracksu/common/form_action_buttons', options: {form: f, index_path: tracksu_activities_path}
 
 
 

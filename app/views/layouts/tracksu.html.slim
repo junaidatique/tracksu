@@ -61,55 +61,28 @@ html
                   = link_to tracksu_products_path
                     i.fa.fa-product-hunt
                     span Products
-                li
-                  = link_to tracksu_users_path
-                    i.fa.fa-user
-                    span Users
-                li
-                  = link_to tracksu_purposes_path
-                    i.fa.fa-user
-                    span Purposes
+                - if can? :create, User
+                  li
+                    = link_to tracksu_users_path
+                      i.fa.fa-user
+                      span Users
+                - if can? :create, Purpose
+                  li
+                    = link_to tracksu_purposes_path
+                      i.fa.fa-user
+                      span Purposes
+                - unless current_user.has_role? :sale_user
+                  li
+                    = link_to tracksu_places_path
+                      i.fa.fa-user
+                      span Places
                 li
                   = link_to tracksu_activities_path
                     i.fa.fa-user
                     span Visits
-                li
-                  = link_to tracksu_places_path
-                    i.fa.fa-user
-                    span Places
 
-      /| @can('view-companies')
-      /li.: class= ("{{ Request::is('companies') ? 'active' '' }}")
-      /a href=("{{ url('companies' )}}")
-      /  i.fa.fa-home
-      /  span Companies
-      /| @endcan
-      /| @can('view-listings')
-      /li.: class= ("{{ Request::is('listings') ? 'active' '' }}")
-      /a href=("{{ url('listings' )}}")
-      /  i.fa.fa-home
-      /  span Users
-      /| @endcan
-      /| @can('view-users')
-      /li.: class= ("{{ Request::is('users') ? 'active' '' }}")
-      /a href=("{{ url('users' )}}")
-      /  i.fa.fa-home
-      /  span Users
-      /| @endcan
-      /| @can('view-users-detail')
-      /li.: class= ("{{ Request::is('user_detail') ? 'active' '' }}")
-      /a href=("{{ url('user_detail?user_id='.Auth::user()->id )}}")
-      /  i.fa.fa-home
-      /  span View Detail
-      /| @endcan
-      /| @can('view-places')
-      /| {{--
-      /li.: class= ("{{ Request::is('place') ? 'active' '' }}")
-      /a href=("{{ route('place.index')}}")
-      /  i.fa.fa-home
-      /  span Places
-      /| \--}}
-      /| @endcan
+
+
       .mainpanel
         .contentpanel
           .row
@@ -117,4 +90,4 @@ html
               = yield
 
 
-  script async="" defer="defer" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=initMap"
+  script async="" defer="defer" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCQtDZPqJIWZ7ndYwHU5NDV8w0Gr4EN5g"
