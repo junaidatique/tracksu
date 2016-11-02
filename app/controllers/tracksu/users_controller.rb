@@ -7,8 +7,8 @@ class Tracksu::UsersController < Tracksu::TracksuController
   end
 
   def show
-    if params['search_date'].present?
-      @activities = @user.activities.where('activity_date = ?', Date.strptime(params['search_date'], "%d/%m/%Y"))
+    if search_param['search_date'].present?
+      @activities = @user.activities.where('activity_date = ?', Date.strptime(search_param['search_date'], "%d/%m/%Y"))
       @date = params['search_date']
     else
       @activities = @user.activities.where('activity_date = ?', Date.today)
@@ -79,6 +79,10 @@ class Tracksu::UsersController < Tracksu::TracksuController
   private
     def set_user
       @user = User.find(params[:id])
+    end
+
+    def search_param
+      params.permit(:search_date)
     end
 
     def use_params

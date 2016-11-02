@@ -32,7 +32,7 @@ class Api::V1::UsersController < Api::V1::ApiController
 #   => 200
 #
 #   resp.body
-#   => {"name":"John","email":"email@test.com","portfolios":[{"id":1,"name":"portfolio1","local_id":"PORT20160401111833619","currency_id":1,"created_at":"2016-04-06 07:41:03 UTC","updated_at":"2016-04-06 07:41:03 UTC","holdings":[{"id":4,"stock_market_registration_id":1,"portfolio_id":1,"local_id":"holding1234","created_at":"2016-04-06 07:54:48 UTC","updated_at":"2016-04-06 07:54:48 UTC","transactions":[{"id":3,"holding_id":4,"position":12.0,"amount":45.0,"rate":45.26,"kind":0,"local_id":"local_transaction_123","date":"2016-03-16 00:00:00 UTC","created_at":"2016-04-06 08:14:30 UTC","updated_at":"2016-04-06 08:14:30 UTC"}]},{"id":9,"stock_market_registration_id":1,"portfolio_id":1,"local_id":"holding12344321","created_at":"2016-04-06 08:14:48 UTC","updated_at":"2016-04-06 08:14:48 UTC","transactions":[]}]},{"id":2,"name":"portfolio1","local_id":"PORT20160401111833619","currency_id":1,"created_at":"2016-04-06 07:41:46 UTC","updated_at":"2016-04-06 07:41:46 UTC","holdings":[]}]}
+#   => {"name":"John","email":"email@test.com"}
 #
   def log_in
     user = User.find_by_email(user_params[:email])
@@ -95,7 +95,7 @@ class Api::V1::UsersController < Api::V1::ApiController
 #   => 200
 #
 #   resp.body
-#   => {"name":"John","email":"email@test.com","portfolios":[{"id":1,"name":"portfolio1","local_id":"PORT20160401111833619","currency_id":1,"created_at":"2016-04-06 07:41:03 UTC","updated_at":"2016-04-06 07:41:03 UTC","holdings":[{"id":4,"stock_market_registration_id":1,"portfolio_id":1,"local_id":"holding1234","created_at":"2016-04-06 07:54:48 UTC","updated_at":"2016-04-06 07:54:48 UTC","transactions":[{"id":3,"holding_id":4,"position":12.0,"amount":45.0,"rate":45.26,"kind":0,"local_id":"local_transaction_123","date":"2016-03-16 00:00:00 UTC","created_at":"2016-04-06 08:14:30 UTC","updated_at":"2016-04-06 08:14:30 UTC"}]},{"id":9,"stock_market_registration_id":1,"portfolio_id":1,"local_id":"holding12344321","created_at":"2016-04-06 08:14:48 UTC","updated_at":"2016-04-06 08:14:48 UTC","transactions":[]}]},{"id":2,"name":"portfolio1","local_id":"PORT20160401111833619","currency_id":1,"created_at":"2016-04-06 07:41:46 UTC","updated_at":"2016-04-06 07:41:46 UTC","holdings":[]}]}
+#   => {"name":"John","email":"email@test.com"}
 #
   def show
     render 'user'
@@ -108,7 +108,7 @@ class Api::V1::UsersController < Api::V1::ApiController
 # User must be authenticated
 #
 # params:
-#   {user: {:name, :old_password, :password, :password_confirmation }}
+#   {user: {:old_password, :password, :password_confirmation }}
 #
 # = Example
 #
@@ -128,7 +128,7 @@ class Api::V1::UsersController < Api::V1::ApiController
 #   => 200
 #
 #   resp.body
-#   => {"name":"John","email":"email@test.com","portfolios":[{"id":1,"name":"portfolio1","local_id":"PORT20160401111833619","currency_id":1,"created_at":"2016-04-06 07:41:03 UTC","updated_at":"2016-04-06 07:41:03 UTC","holdings":[{"id":4,"stock_market_registration_id":1,"portfolio_id":1,"local_id":"holding1234","created_at":"2016-04-06 07:54:48 UTC","updated_at":"2016-04-06 07:54:48 UTC","transactions":[{"id":3,"holding_id":4,"position":12.0,"amount":45.0,"rate":45.26,"kind":0,"local_id":"local_transaction_123","date":"2016-03-16 00:00:00 UTC","created_at":"2016-04-06 08:14:30 UTC","updated_at":"2016-04-06 08:14:30 UTC"}]},{"id":9,"stock_market_registration_id":1,"portfolio_id":1,"local_id":"holding12344321","created_at":"2016-04-06 08:14:48 UTC","updated_at":"2016-04-06 08:14:48 UTC","transactions":[]}]},{"id":2,"name":"portfolio1","local_id":"PORT20160401111833619","currency_id":1,"created_at":"2016-04-06 07:41:46 UTC","updated_at":"2016-04-06 07:41:46 UTC","holdings":[]}]}
+#   => {"name":"John","email":"email@test.com"}
 #
   def update_password
     if current_user.valid_password?(user_update_password_params[:old_password])
