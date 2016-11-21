@@ -24,12 +24,21 @@ Rails.application.routes.draw do
           post 'update_password'
         end
       end
-      resources :activities, only: [:index, :create, :update, :destroy] do
-        collection do
-          put 'update'
-          delete 'destroy'
-        end
+      resources :activities, only: [:index, :create] do
+        # collection do
+        #   put 'update'
+        #   delete 'destroy'
+        # end
       end
+      resources :products, only: [:index]
+      resources :purposes, only: [:index]
+      resources :places, only: [:index, :create] do
+        # collection do
+        #   put 'update'
+        #   delete 'destroy'
+        # end
+      end
+      resources :tracking_points, only: [:index, :create]
     end
   end
 

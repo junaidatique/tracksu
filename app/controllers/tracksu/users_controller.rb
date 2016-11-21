@@ -28,7 +28,10 @@ class Tracksu::UsersController < Tracksu::TracksuController
 
   def create
     @user = User.new user_params
-    @user.company_id = current_user.company.id
+    @user.company_id  = current_user.company.id
+    @user.company_id  = user_params[:company_id] unless user_params[:company_id].blank?
+    puts user_params[:company_id].inspect
+    puts user_params.inspect
 
 
     respond_to do |format|
@@ -94,6 +97,6 @@ class Tracksu::UsersController < Tracksu::TracksuController
     end
 
     def user_params
-      params.require(:user).permit(:name, :email, :password, :role_ids)
+      params.require(:user).permit(:name, :email, :password, :role_ids, :company_id)
     end
 end

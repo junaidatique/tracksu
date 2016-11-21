@@ -1,0 +1,1 @@
+json.partial! 'tracking_point', tracking_point: @tracking_point

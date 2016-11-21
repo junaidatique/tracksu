@@ -5,6 +5,7 @@ class Ability
     alias_action :create, :read, :update, :destroy, to: :crud
     alias_action :index, :read, :update, :destroy, to: :irud
     alias_action :index, :read, :update, to: :iru
+    alias_action :index, :read, to: :ir
     alias_action :read, :update, :destroy, to: :rud
 
     if user.has_role? :admin
@@ -26,9 +27,12 @@ class Ability
       can :irud, Purpose, company_id: user.company_id
       can :create, Place
       can :irud, Place, company_id: user.company_id
+      can :irud, Place, company_id: user.company_id
 
       can :create, Activity
       can :irud, Activity, user_id: user.company.users.map(&:id)
+      can :create, TrackingPoint
+      can :ir, TrackingPoint, user_id: user.id
 
 
     elsif user.has_role? :manager
@@ -52,6 +56,11 @@ class Ability
       can :create, Activity
       can :irud, Activity, user_id: user.company.users.map(&:id)
 
+      can :read, Purpose, company_id: user.company_id
+
+      can :create, TrackingPoint
+      can :ir, TrackingPoint, user_id: user.id
+
     elsif user.has_role? :sale_user
       can :index, Product, :company_id => user.company_id
       can :read, User, id: user.id
@@ -63,7 +72,10 @@ class Ability
 
       can :create, Activity
       can :iru, Activity, user_id: user.id
+      can :index, Purpose, company_id: user.company_id
 
+      can :create, TrackingPoint
+      can :ir, TrackingPoint, user_id: user.id
 
     else
       can :read, :user

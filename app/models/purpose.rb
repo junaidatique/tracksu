@@ -3,6 +3,7 @@ class Purpose < ApplicationRecord
   has_and_belongs_to_many :activities
 
   scope :activated, -> { where(activated: true) }
+  scope :active, -> { where(activated: true) }
 
   def is_activated?
     activated?

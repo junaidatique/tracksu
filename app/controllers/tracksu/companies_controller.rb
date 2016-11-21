@@ -70,6 +70,6 @@ class Tracksu::CompaniesController < Tracksu::TracksuController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
-      params.require(:companies).permit(:subdomain, :owner_attributes, :title, :activated)
+      params.require(:company).permit(:subdomain, :owner_attributes, :title, :activated)
     end
 end

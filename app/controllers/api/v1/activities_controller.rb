@@ -14,16 +14,17 @@ class Api::V1::ActivitiesController < Api::V1::ApiController
 # GET /api/v1/activities
 #
 # params:
-#   {}
+#   {search_date: '09/11/2016'}
 #
 # = Example
 #
-#   resp = conn.get("/api/v1/activities", headers: { Access_Token: "Secret token"})
+#   resp = conn.get("/api/v1/activities", headers: { Access_Token: "Secret token"}, params: {search_date: '09/11/2016'})
 #
 #   resp.status
 #   => 200
 #
 #   resp.body
+#   => {"activities":[{"id":7,"place":{"id":2,"name":"Fort Road","address":"Fort Road, Rawalpindi, Pakistan","latitude":33.5741022, "longitude":73.0603163,"customer_type":"Customer"},"activity_date":"2016-11-20","start_time":"2016-11-20T11:53:00.000Z", "comment":"this is postman comment","purposes":[{"id":4,"title":"Purpose 1"}],"saleproducts":[{"id":12,"product":{"id":1, "title":"Product 1 1"},"quantity":3,"rate":2.0}]}]}
   def index
     #@activities = current_user.activities
     if search_param['search_date'].present?
@@ -43,87 +44,28 @@ class Api::V1::ActivitiesController < Api::V1::ApiController
 # POST /api/v1/activities
 #
 # params:
-#   {activity: { activities:[{name: 'activity1', user_id:1, local_id:'123abc'},{name: 'activity2', user_id:3, local_id:'123abc'}..]}}
+#   {activity: {comment: 'this is test comment', start_time: '09/11/2016 00:53', place_attributes: [{id: 123, customer_type:”1”}], purpose_ids: [1,2,3], saleproducts_attributes: [{product_id: 4, rate: 10.9, quantity: 5}, {product_id: 5, rate: 4.0, quantity: 3}]}}
 #
 # = Example
 #
 #   resp = conn.post("/api/v1/activities/",
 #                   headers: { Access_Token: "Secret token"},
-#                   params:  {activity: { activities:[{name: 'activity1', local_id:'PORT201604011118336191', user_id:1},
-#                            {name: 'activity2', local_id:'PORT201604011118336192', user_id:1}]}})
+#                   params:  {activity: {comment: 'this is test comment', start_time: '09/11/2016 00:53', place_attributes: [{id: 123, customer_type:”1”}], purpose_ids: [1,2,3], saleproducts_attributes: [{product_id: 4, rate: 10.9, quantity: 5}, {product_id: 5, rate: 4.0, quantity: 3}]}}
 #
 #   resp.status
 #   => 200
 #
 #   resp.body
+#   => {"activities":[{"id":7,"place":{"id":2,"name":"Fort Road","address":"Fort Road, Rawalpindi, Pakistan","latitude":33.5741022, "longitude":73.0603163,"customer_type":"Customer"},"activity_date":"2016-11-20","start_time":"2016-11-20T11:53:00.000Z", "comment":"this is postman comment","purposes":[{"id":4,"title":"Purpose 1"}],"saleproducts":[{"id":12,"product":{"id":1, "title":"Product 1 1"},"quantity":3,"rate":2.0}]}]}
   def create
-    activities_array = []
-    activity_params[:activities].each do |key, activities_param|
-      activity = Activity.new(activities_param)
-      activity.user_id = current_user.id
-      activities_array << activity
-    end
-    activities_response = Activity.import activities_array
-    @activities = Activity.where(id: activities_response[:ids])
+    puts activity_params.inspect
+    @activity = current_user.activities.new(activity_params)
+    @activity.save
+    @activities = current_user.activities.where('activity_date = ?', @activity.activity_date)
 
     render 'activities'
   end
-##
-# Update a activity
-#
-# Returns a updated activity
-#
-# PUT /api/v1/activities/:id
-#
-# params:
-#   {activity: { name: 'activity1', user_id:1}}
-#
-# = Example
-#
-#   resp = conn.put("/api/v1/activities/1",
-#                   headers: { Access_Token: "Secret token"},
-#                   params:  {activity: {name: 'activity112', user_id:1}})
-#
-#   resp.status
-#   => 200
-#
-#   resp.body
 
-  def update
-    @activity.update(activity_update_params)
-    render 'activity'
-  end
-
-##
-# Destroy a activity
-#
-# Returns a message
-#
-# DELETE /api/v1/activities/:id
-#
-# params:
-#   {}
-#
-# = Example
-#
-#   resp = conn.delete("/api/v1/activities/1",
-#                   headers: { Access_Token: "Secret token"})
-#
-#   resp.status
-#   => 200
-#
-#   resp.body
-#   => {"message":"Activity has been destroyed"}
-#
-  def destroy
-    @message = ''
-    if @activity.destroy
-      @message = 'Activity has been destroyed'
-    else
-      @message = @activity.errors.full_messages.first
-    end
-    render 'message'
-  end
 
   private
 
