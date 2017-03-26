@@ -12,3 +12,4 @@ end
 json.saleproducts activity.saleproducts do |saleproduct|
   json.partial! 'api/v1/activities/saleproduct', saleproduct: saleproduct
 end
+json.local_id activity.local_id

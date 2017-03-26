@@ -23,7 +23,6 @@ class Api::V1::PlacesController < Api::V1::ApiController
 #   resp.body
 #   => {"places":[{"id":2,"name":"Fort Road","address":"Fort Road, Rawalpindi, Pakistan","latitude":33.5741022,"longitude":73 .0603163,"customer_type":"Customer"}]}
   def index
-
     render 'places'
   end
 ##
@@ -34,32 +33,34 @@ class Api::V1::PlacesController < Api::V1::ApiController
 # POST /api/v1/places
 #
 # params:
+#  {place: {places [{name: 'Place Name', address: 'Place Address', latitude: 33.123, longitude: 74.987, local_id: "PORT201604011118336191"},{name: 'Place Name', address: 'Place Address', latitude: 33.123, longitude: 74.987, local_id: "PORT201604011118336191"}]}} 
 #
 #
 # = Example
 #
 #   resp = conn.post("/api/v1/places/",
 #                   headers: { Access_Token: "Secret token"},
-#                   params:  {place: {name: 'Place Name', address: 'Place Address', latitude: 33.123, longitude: 74.987}}
+#                   params:  {place: {places [{name: 'Place Name', address: 'Place Address', latitude: 33.123, longitude: 74.987, local_id: "PORT201604011118336191"},{name: 'Place Name', address: 'Place Address', latitude: 33.123, longitude: 74.987, local_id: "PORT201604011118336191"}]}})
 #
 #   resp.status
 #   => 200
 #
 #   resp.body
-#   => {"places":[{"id":2,"name":"Fort Road","address":"Fort Road, Rawalpindi, Pakistan","latitude":33.5741022,"longitude":73 .0603163,"customer_type":"Customer"}]}
+#   => {"places":[{"id":2,"name":"Fort Road","address":"Fort Road, Rawalpindi, Pakistan","latitude":33.5741022,"longitude":73 .0603163,"customer_type":"Customer", local_id: "PORT201604011118336191"}, {"id":2,"name":"Fort Road","address":"Fort Road, Rawalpindi, Pakistan","latitude":33.5741022,"longitude":73 .0603163,"customer_type":"Customer", local_id: "PORT201604011118336191"}]}
   def create
-
-    @place = current_user.company.places.new(place_params)
-    @place.save
-    @places = current_user.company.places
+    @places = []
+    place_param = params.require(:place).permit(places: [:name, :address, :latitude, :longitude, :local_id]).to_h
+    place_param[:places].each do |key, param|
+      place = current_user.company.places.new(param)
+      place.save
+      @places << place
+    end
     render 'places'
   end
 
   private
-
-
   def place_params
-    params.require(:place).permit(:name, :address, :latitude, :longitude)
+    #params.require(:place).permit(places: [:name, :address, :latitude, :longitude, :local_id])
   end
 
 

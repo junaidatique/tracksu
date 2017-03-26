@@ -39,32 +39,36 @@ class Api::V1::TrackingPointsController < Api::V1::ApiController
 # POST /api/v1/tracking_points
 #
 # params:
+#    {tracking_point: {tracking_points:[{latitude: 33.123, longitude: 74.987, local_id: "PORT201604011118336191"},{latitude: 33.124, longitude: 74.988, local_id: "PORT201604011118336192"}]} }
 #
 #
 # = Example
 #
 #   resp = conn.post("/api/v1/tracking_points/",
 #                   headers: { Access_Token: "Secret token"},
-#                   params:  {tracking_point: {latitude: 33.123, longitude: 74.987}}
+#                   params:  {tracking_point: {tracking_points:[{latitude: 33.123, longitude: 74.987, local_id: "PORT201604011118336191"},{latitude: 33.124, longitude: 74.988, local_id: "PORT201604011118336192"}]} } )                    
 #
 #   resp.status
 #   => 200
 #
 #   resp.body
-#   => {"tracking_points":[{"id":1,"latitude":"31.4689618","longitude":"74.2983535"},{"id":2,"latitude":"31.4689618","longitude":"74.2983535"}]}
+#   => {"tracking_points":[{"id":1,"latitude":"31.4689618","longitude":"74.2983535", local_id: "PORT201604011118336192"},{"id":2,"latitude":"31.4689618","longitude":"74.2983535", local_id: "PORT201604011118336192"}]}
   def create
-
-    @tracking_point = current_user.tracking_points.new tracking_point_params
-    @tracking_point.save
-    @tracking_points = current_user.tracking_points.where('DATE(created_at) = ?', Date.today)
+    @tracking_points = []  
+    tracking_point_param = params.require(:tracking_point).permit(tracking_points: [:latitude, :longitude, :local_id]).to_h
+    tracking_point_param[:tracking_points].each do |key, param|      
+      tracking_point = current_user.tracking_points.new(param)      
+      tracking_point.save
+      @tracking_points << tracking_point
+    end
     render 'tracking_points'
   end
 
   private
 
 
-  def tracking_point_params
-    params.require(:tracking_point).permit(:latitude, :longitude)
+  def tracking_point_params    
+    #params.require(:tracking_point).permit(tracking_points: [:latitude, :longitude])
   end
 
 

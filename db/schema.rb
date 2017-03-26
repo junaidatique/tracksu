@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161026090054) do
+ActiveRecord::Schema.define(version: 20170324192154) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20161026090054) do
     t.datetime "updated_at",    null: false
     t.integer  "place_id"
     t.text     "comment"
+    t.string   "local_id"
     t.index ["place_id"], name: "index_activities_on_place_id", using: :btree
     t.index ["user_id"], name: "index_activities_on_user_id", using: :btree
   end
@@ -65,6 +66,7 @@ ActiveRecord::Schema.define(version: 20161026090054) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.string   "address"
+    t.string   "local_id"
     t.index ["company_id"], name: "index_places_on_company_id", using: :btree
   end
 
@@ -113,6 +115,7 @@ ActiveRecord::Schema.define(version: 20161026090054) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user_id"
+    t.string   "local_id"
     t.index ["user_id"], name: "index_tracking_points_on_user_id", using: :btree
   end
 

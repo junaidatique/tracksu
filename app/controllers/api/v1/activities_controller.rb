@@ -44,13 +44,13 @@ class Api::V1::ActivitiesController < Api::V1::ApiController
 # POST /api/v1/activities
 #
 # params:
-#   {activity: {comment: 'this is test comment', start_time: '09/11/2016 00:53', place_attributes: [{id: 123, customer_type:”1”}], purpose_ids: [1,2,3], saleproducts_attributes: [{product_id: 4, rate: 10.9, quantity: 5}, {product_id: 5, rate: 4.0, quantity: 3}]}}
+#   {activity:{ activities: [{comment: 'this is test comment', start_time: '09/11/2016 00:53', place_attributes: [{id: 123, customer_type:”1”}], purpose_ids: [1,2,3], saleproducts_attributes: [{product_id: 4, rate: 10.9, quantity: 5}, {product_id: 5, rate: 4.0, quantity: 3}]},{comment: 'this is test comment', start_time: '09/11/2016 00:53', place_attributes: [{id: 123, customer_type:”1”}], purpose_ids: [1,2,3], saleproducts_attributes: [{product_id: 4, rate: 10.9, quantity: 5}, {product_id: 5, rate: 4.0, quantity: 3}]}]}}
 #
 # = Example
 #
 #   resp = conn.post("/api/v1/activities/",
 #                   headers: { Access_Token: "Secret token"},
-#                   params:  {activity: {comment: 'this is test comment', start_time: '09/11/2016 00:53', place_attributes: [{id: 123, customer_type:”1”}], purpose_ids: [1,2,3], saleproducts_attributes: [{product_id: 4, rate: 10.9, quantity: 5}, {product_id: 5, rate: 4.0, quantity: 3}]}}
+#                   params:  {activity:{ activities: [{comment: 'this is test comment', start_time: '09/11/2016 00:53', place_attributes: [{id: 123, customer_type:”1”}], purpose_ids: [1,2,3], saleproducts_attributes: [{product_id: 4, rate: 10.9, quantity: 5}, {product_id: 5, rate: 4.0, quantity: 3}]},{comment: 'this is test comment', start_time: '09/11/2016 00:53', place_attributes: [{id: 123, customer_type:”1”}], purpose_ids: [1,2,3], saleproducts_attributes: [{product_id: 4, rate: 10.9, quantity: 5}, {product_id: 5, rate: 4.0, quantity: 3}]}]}})
 #
 #   resp.status
 #   => 200
@@ -58,11 +58,13 @@ class Api::V1::ActivitiesController < Api::V1::ApiController
 #   resp.body
 #   => {"activities":[{"id":7,"place":{"id":2,"name":"Fort Road","address":"Fort Road, Rawalpindi, Pakistan","latitude":33.5741022, "longitude":73.0603163,"customer_type":"Customer"},"activity_date":"2016-11-20","start_time":"2016-11-20T11:53:00.000Z", "comment":"this is postman comment","purposes":[{"id":4,"title":"Purpose 1"}],"saleproducts":[{"id":12,"product":{"id":1, "title":"Product 1 1"},"quantity":3,"rate":2.0}]}]}
   def create
-    puts activity_params.inspect
-    @activity = current_user.activities.new(activity_params)
-    @activity.save
-    @activities = current_user.activities.where('activity_date = ?', @activity.activity_date)
-
+    @activities = []
+    activity_param = params.require(:activity).permit(activities: [:comment, :start_time, place_attributes: [:id, :customer_type], purpose_ids: [], saleproducts_attributes: [:product_id, :rate, :quantity, :_destroy]]).to_h    
+    activity_param[:activities].each do |key, param|
+      activity = current_user.activities.new(param)
+      activity.save
+      @activities << activity
+    end
     render 'activities'
   end
 
@@ -70,8 +72,8 @@ class Api::V1::ActivitiesController < Api::V1::ApiController
   private
 
 
-  def activity_params
-    params.require(:activity).permit(:comment, :start_time, place_attributes: [:id, :customer_type], purpose_ids: [], saleproducts_attributes: [:product_id, :rate, :quantity, :_destroy])
+  def activity_params    
+    #param.permit(:comment, :start_time, place_attributes: [:id, :customer_type], purpose_ids: [], saleproducts_attributes: [:product_id, :rate, :quantity, :_destroy])
   end
 
   def search_param

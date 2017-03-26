@@ -67,5 +67,6 @@ group :development do
   gem 'dotenv-rails'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'erd'
 end
 
