@@ -22,14 +22,14 @@ html
           #bs-example-navbar-collapse-1.collapse.navbar-collapse
             .right.hidden-xs.hidden-sm
 
-              - if user_signed_in?
-                = link_to tracksu_user_path(current_user), class: "spaced login"
-                  | Tracksu
-              - else
-                = link_to new_company_path, class: "btn btn-primary"
-                  | Sign Up
-                = link_to new_user_session_path, class: "spaced login"
-                  | Log In
+              / - if user_signed_in?
+              /   = link_to tracksu_user_path(current_user), class: "spaced login"
+              /     | Tracksu
+              / - else
+              /   = link_to new_company_path, class: "btn btn-primary"
+              /     | Sign Up
+              /   = link_to new_user_session_path, class: "spaced login"
+              /     | Log In
 
               /a.btn.btn-primary href="{{ url('auth/register') }}"  Sign Up
               /a.spaced.login href=("{{ url('auth/login') }}")  Log In
